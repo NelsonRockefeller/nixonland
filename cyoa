@@ -1,11 +1,11 @@
 campaignTrail_temp.cyoa = true;
 e=campaignTrail_temp
 // vars
-var reveal = 0;
-var bidenReplaced = 0
+var goldwater = 0;
+var lodge = 0
 var knowland = 0;
-var globalTension = 0;
-var finalDelusion = 0;
+var straton = 0;
+var mckay = 0;
 e.noCounter = 0
 
 const targetNode = document.getElementById("game_window");
@@ -23,13 +23,19 @@ function updateQuestionBanner() {
 	if(!questionBanner || questionBanner.nodeName != "DIV") return;
 	let img = document.createElement('img');
 	if(reveal == 0){
-        img.src = 'https://i.imgur.com/jXrJXI3.png';
+        img.src = 'https://i.imgur.com/11TkISC.jpeg';
     }
-    else if(reveal == 1 && bidenReplaced == 0){
-        img.src = 'https://i.imgur.com/jeu8Ey5.png';
+    else if(lodge == 1){
+        img.src = 'https://i.imgur.com/B2B13O5.jpeg';
     }
-    else{
-        img.src = 'https://i.imgur.com/QMW4Y6J.png';
+    else if(goldwater == 1){
+        img.src = 'https://i.imgur.com/svyPi2I.jpeg';
+    }
+    else if(straton == 1){
+        img.src = 'https://i.imgur.com/UwS2ICY.jpeg';
+    }
+    else if(mckay == 1){
+        img.src = 'https://i.imgur.com/QmZCJyP.jpeg';
     }
 	questionBanner.replaceWith(img);
 }
@@ -37,6 +43,7 @@ function updateQuestionBanner() {
 function tunnel(new_q){
     return e.questions_json[e.questions_json.map(f=>f.pk).indexOf(new_q)];
 }  
+
 
 
 function finalReveal() {
@@ -141,36 +148,17 @@ cyoAdventure = function(a) {
     if(ans == 3873){
         knowland += 2;
     }
-    if(ans == 1182){
-        dementiaMoments += 1;
+    if(ans == 3906){
+        lodge += 1;
     }
-    if(ans == 1191){
-        dementiaMoments += 1;
+    if(ans == 13760){
+        goldwater += 1;
     }
-    if(ans == 1204){
-        dementiaMoments += 1;
+    if(ans == 13768){
+        straton += 1;
     }
-    if(ans == 1209){
-        dementiaMoments += 1;
-    }
-    if(ans == 1220){
-        dementiaMoments += 1;
-    }
-    if(ans == 1231){
-        dementiaMoments += 1;
-    }
-    if(ans == 1258){
-        dementiaMoments += 1;
-    }
-    // Rising Tensions
-    if(ans == 1164){
-        globalTension += 1;
-    }
-    if(ans == 1189){
-        globalTension += 1;
-    }
-    if(ans == 1225){
-        globalTension += 1;
+    if(ans == 13781){
+        mckay += 1;
     }
 
     // Answers
@@ -215,7 +203,7 @@ cyoAdventure = function(a) {
     // Question CYOA
     
     // Kamala DNC
-    if(Knowland >= 7 && (e.noCounter == 0)){
+    if(Knowland >= 6 && (e.noCounter == 0)){
         bidenReplaced = 0;
         campaignTrail_temp.questions_json[12] = tunnel(13695);   
     }
@@ -282,7 +270,7 @@ cyoAdventure = function(a) {
 
     // Reveal
     if(finalDelusion != 1){
-        if(bidenReplaced == 1 && (e.noCounter == 15)){                          // KAMALA PERSPECTIVE
+        if(lodge == 1){                          // KAMALA PERSPECTIVE
             campaignTrail_temp.questions_json[15] = tunnel(1278);   
         }
         else if(bidenReplaced == 0 && globalTension >= 3 && (e.noCounter == 15)){    // IRAN WAR
