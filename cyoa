@@ -41,51 +41,8 @@ function updateQuestionBanner() {
 }
 
 function tunnel(new_q){
-    return e.questions_json[e.questions_json.map(f=>f.pk).indexOf(new_q)];
+
 }  
-
-
-
-function finalReveal() {
-
-    modernizeStates();
-    reveal = 1;
-    document.getElementById("wittyquote").color = "red"
-    corrr=`\n<h2>BIDEN</h2><font id='wittyquote' size='4' color='#E6CA9B'><em>`+customquote+`</em></font>`
-    
-    var gameWindow = document.getElementById("game_window");
-    gameWindow.style.backgroundColor = "rgb(29, 88, 186)";
-
-    document.getElementById("header").src = "https://i.imgur.com/DSDwY03.png"
-    nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1D58BA"
-    nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#ffffff"
-    document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
-    $(".container")[0].style.backgroundColor = "#ffffff"
-    document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
-    
-    document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
-
-    var id = e.candidate_json.map(p=>p.pk).indexOf(77)
-    e.candidate_json[id].fields.first_name = "Donald"
-    e.candidate_json[id].fields.last_name = "Trump" 
-    e.candidate_json[id].fields.color_hex = "#ab3e37" 
-    
-    var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(78)
-    campaignTrail_temp.candidate_json[id].fields.color_hex = "#4265a1"
-
-    
-    var id = e.candidate_json.map(p=>p.pk).indexOf(79)
-    e.candidate_json[id].fields.first_name = "Robert F."
-    e.candidate_json[id].fields.last_name = "Kennedy Jr." 
-    e.candidate_json[id].fields.color_hex = "#e0a34c" 
-    
-    var id = e.candidate_json.map(p=>p.pk).indexOf(80)
-    e.candidate_json[id].fields.first_name = "Jill"
-    e.candidate_json[id].fields.last_name = "Stein" 
-    e.candidate_json[id].fields.color_hex = "#0d9e4c" 
-
-    campaignTrail_temp.election_json[0].fields.advisor_url = "https://i.imgur.com/HRao88e.png"
-
     if(Knowland == 6){
         var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(117)
         e.candidate_json[id].fields.first_name = "William F."
@@ -161,122 +118,17 @@ cyoAdventure = function(a) {
         mckay += 1;
     }
 
-    // Answers
-    if(ans == 1317){ // Final Delusion
-        var id = e.candidate_json.map(p=>p.pk).indexOf(77)
-        e.candidate_json[id].fields.first_name = "George"
-        e.candidate_json[id].fields.last_name = "Bush" 
-        e.candidate_json[id].fields.color_hex = "#D45C66" 
-
-        var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(78)
-        campaignTrail_temp.candidate_json[id].fields.color_hex = "#9090C4"
-        vpTable["Joe Biden"] = "Pat Schroeder";
-    
-        var id = e.candidate_json.map(p=>p.pk).indexOf(79)
-        e.candidate_json[id].fields.first_name = "Jerry"
-        e.candidate_json[id].fields.last_name = "Brown" 
-        e.candidate_json[id].fields.color_hex = "#DB90B6" 
-        
-        var id = e.candidate_json.map(p=>p.pk).indexOf(80)
-        e.candidate_json[id].fields.first_name = "Lenora"
-        e.candidate_json[id].fields.last_name = "Fulani" 
-        e.candidate_json[id].fields.color_hex = "#BAE2BE" 
-
-        finalDelusion = 1;
-
-        document.getElementById("wittyquote").color = "red"
-        corrr='\n              <h2>JOE BIDEN</h2><font id="wittyquote" size="4" color="white"><em>PRESIDENT</em></font>\n            ';
-        
-        var gameWindow = document.getElementById("game_window");
-        gameWindow.style.backgroundColor = "rgb(0, 0, 136)";
-
-        document.getElementById("header").src = "https://i.imgur.com/W39Y0be.png"
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#000088";
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#000088";
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
-        $(".container")[0].style.backgroundColor = "#8E1818"
-        document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
-        
-        document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
-    }
-
     // Question CYOA
     
-    // Kamala DNC
-    if(Knowland >= 6 && (e.noCounter == 0)){
-        bidenReplaced = 0;
+    // knowland rnc
+    if(knowland >= 6){
+         knowland= 6;
         campaignTrail_temp.questions_json[12] = tunnel(13695);   
     }
-    // Kamala Candidate Campaigning
-    if(bidenReplaced == 1 && (e.noCounter == 14)){
-        campaignTrail_temp.questions_json[14] = tunnel(1305);   
+    // knowland Candidate Campaigning
+    if(knowland == 1){
+        campaignTrail_temp.questions_json[14] = tunnel(1305); 
+        e.global_parameter_json[0].fields.question_count = 13;
     }
-
-    if(e.noCounter == 13){ // enables state visits so you see the map
-        var id = e.election_json.map(p=>p.pk).indexOf(9)
-        e.election_json[id].fields.has_visits = 1;
-    }
-
-    // Reveal
-    if(e.noCounter == 15 && dementiaMoments >= 6 && bidenReplaced == 0){
-        finalDelusion = 1;
-        campaignTrail_temp.questions_json[15] = tunnel(1314);   
-        e.global_parameter_json[0].fields.question_count = 16;
-
-        campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/SXLWUbU.png';
-        campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/NGWR7DG.png';
-
-        reveal = 1;
-        document.getElementById("wittyquote").color = "red"
-        corrr=`\n<h2>BIDEN</h2><font id='wittyquote' size='4' color='#E6CA9B'><em>`+customquote+`</em></font>`
-        
-        var gameWindow = document.getElementById("game_window");
-        gameWindow.style.backgroundColor = "rgb(29, 88, 186)";
-
-        document.getElementById("header").src = "https://i.imgur.com/DSDwY03.png"
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1D58BA"
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#ffffff"
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
-        $(".container")[0].style.backgroundColor = "#ffffff"
-        document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
-        
-        document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
-
-        var id = e.candidate_json.map(p=>p.pk).indexOf(77)
-        e.candidate_json[id].fields.first_name = "Donald"
-        e.candidate_json[id].fields.last_name = "Trump" 
-        e.candidate_json[id].fields.color_hex = "#ab3e37" 
-        
-        var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(78)
-        campaignTrail_temp.candidate_json[id].fields.color_hex = "#4265a1"
-
-        
-        var id = e.candidate_json.map(p=>p.pk).indexOf(79)
-        e.candidate_json[id].fields.first_name = "Robert F."
-        e.candidate_json[id].fields.last_name = "Kennedy Jr." 
-        e.candidate_json[id].fields.color_hex = "#e0a34c" 
-        
-        var id = e.candidate_json.map(p=>p.pk).indexOf(80)
-        e.candidate_json[id].fields.first_name = "Jill"
-        e.candidate_json[id].fields.last_name = "Stein" 
-        e.candidate_json[id].fields.color_hex = "#0d9e4c" 
-
-        campaignTrail_temp.election_json[0].fields.advisor_url = "https://i.imgur.com/HRao88e.png"
-    }
-    else if(e.noCounter == 15){
-        e.global_parameter_json[0].fields.question_count = 16;
-        finalReveal();
-    }
-
-    // Reveal
-    if(finalDelusion != 1){
-        if(lodge == 1){                          // KAMALA PERSPECTIVE
-            campaignTrail_temp.questions_json[15] = tunnel(1278);   
-        }
-        else if(bidenReplaced == 0 && globalTension >= 3 && (e.noCounter == 15)){    // IRAN WAR
-            campaignTrail_temp.questions_json[15] = tunnel(1287);   
-        }
-        else if(bidenReplaced == 0 && globalTension < 3 && (e.noCounter == 15)){     // BIDEN REVEAL
-            campaignTrail_temp.questions_json[15] = tunnel(1260);   
         }
     }
