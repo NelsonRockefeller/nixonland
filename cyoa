@@ -1,3 +1,20 @@
+let e = campaignTrail_temp;
+e.global_parameter_json[0].fields.question_count = 25
+
+function ctsAchievement(achievement, difficultyChecker = true){
+	if ((difficultyChecker && campaignTrail_temp.difficulty_level_multiplier<=1)||!difficultyChecker)
+		if(campaignTrail_temp.CTS){
+		unlockAchievement(achievement);
+	}
+}
+
+customquote = quotes[Math.floor((Math.random() * quotes.length))]
+campaignTrail_temp.running_mate_last_name = '';
+campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/uPcFtka.png';
+campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/mDtSzRZ.png';
+campaignTrail_temp.candidate_last_name = '';
+
+
 campaignTrail_temp.cyoa = true;
 e=campaignTrail_temp
 // vars
@@ -22,7 +39,7 @@ function updateQuestionBanner() {
 	let questionBanner = document.getElementById("campaign_sign");
 	if(!questionBanner || questionBanner.nodeName != "DIV") return;
 	let img = document.createElement('img');
-	if(reveal == 0){
+	if(knowland == 0){
         img.src = 'https://i.imgur.com/11TkISC.jpeg';
     }
     else if(lodge == 1){
@@ -39,10 +56,6 @@ function updateQuestionBanner() {
     }
 	questionBanner.replaceWith(img);
 }
-
-function tunnel(new_q){
-
-}  
     if(Knowland == 6){
         var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(117)
         e.candidate_json[id].fields.first_name = "William F."
@@ -87,9 +100,8 @@ candidateObserver.observe(gameWindowNode, candidateWatcherConfig);
 
 cyoAdventure = function(a) {
     ans = campaignTrail_temp.player_answers[campaignTrail_temp.player_answers.length-1];
-    e.noCounter += 1
 
-    // Dementia Moments
+    // stuff
     if(ans == 3897){
         knowland += 1;
     }
@@ -118,15 +130,53 @@ cyoAdventure = function(a) {
         mckay += 1;
     }
 
+    // Answers
+    if(ans == 1317){ // Does he Knowland
+        var id = e.candidate_json.map(p=>p.pk).indexOf(117)
+        e.candidate_json[id].fields.first_name = "William F."
+        e.candidate_json[id].fields.last_name = "Knowland" 
+        e.candidate_json[id].fields.color_hex = "#800808" 
+
+        var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf()
+        campaignTrail_temp.candidate_json[id].fields.color_hex = "#800808"
+        vpTable["William F. Knowland"] = "Christian Herter";
+    
+        var id = e.candidate_json.map(p=>p.pk).indexOf(116)
+        e.candidate_json[id].fields.first_name = "Adlai"
+        e.candidate_json[id].fields.last_name = "Stevenson II" 
+        e.candidate_json[id].fields.color_hex = "#088F8F" 
+        
+        var id = e.candidate_json.map(p=>p.pk).indexOf(118)
+        e.candidate_json[id].fields.first_name = "T. Coleman"
+        e.candidate_json[id].fields.last_name = "Andrews" 
+        e.candidate_json[id].fields.color_hex = "#E1C16E" 
+
+        finalDelusion = 1;
+
+        document.getElementById("wittyquote").color = "red"
+        corrr='\n              <h2>JOE BIDEN</h2><font id="wittyquote" size="4" color="white"><em>PRESIDENT</em></font>\n            ';
+        
+        var gameWindow = document.getElementById("game_window");
+        gameWindow.style.backgroundColor = "rgb(0, 0, 136)";
+
+        document.getElementById("header").src = "https://i.imgur.com/W39Y0be.png"
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#000088";
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#000088";
+        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
+        $(".container")[0].style.backgroundColor = "#8E1818"
+        document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
+        
+        document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
+    }
+
     // Question CYOA
     
     // knowland rnc
-    if(knowland >= 6){
+    if(knowland >= 6 && (e.noCounter == 6){
          knowland= 6;
         campaignTrail_temp.questions_json[12] = tunnel(13695);   
     }
     // knowland Candidate Campaigning
-    if(knowland == 1){
+    if(knowland == 6 && (e.noCounter == 6){
         campaignTrail_temp.questions_json[14] = tunnel(1305); 
-        e.global_parameter_json[0].fields.question_count = 13;
     }
