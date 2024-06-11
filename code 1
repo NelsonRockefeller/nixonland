@@ -1,0 +1,240 @@
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 12,
+        "fields": {
+            "year": 1948,
+            "summary": "General Eisenhower, elected in a landslide to the presidency against the 20 year malaise of Democratic rule now lies dead on a hospital bed, betrayed by the heart that withstood the greatest war known to mankind. Now the whims of fate gave the young Vice-President Richard Nixon the helm of the greatest position in the land, facing against the raging waves of the Cold War and its ever-changing tides both at home and abroad.</p> <ul><li>With the election one year away, Richard Nixon now finds himself with precious little time to prove himself to the nation and his party that he is capable of being a torchbearer to the legacy of the beloved President,</li><li>as Adlai Stevenson II, once thoroughly defeated by Eisenhower, now has returned and preparing for a renewed offensive on a mourning GOP.</li> ",
+            "image_url": "https://www.jetsimon.com/public/static/images/1948-election-photo.jpg",
+            "winning_electoral_vote_number": 266,
+            "advisor_url": "https://www.jetsimon.com/public/static/images/clifford-bridges-1948.jpg",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">1948 Election Books and Links</h4>David McCullough - <a href=\"http://www.amazon.com/exec/obidos/ASIN/B000FC0VVQ/amhius20-20\" target=\"_blank\">Truman</a></br>Andrew E. Busch - <a href=\"http://www.amazon.com/exec/obidos/ASIN/0700618678/amhius20-20\" target=\"_blank\">Truman's Triumphs: The 1948 Election and the Making of Postwar America</a></br>David Pietruza - <a href=\"http://www.amazon.com/exec/obidos/ASIN/140276748X/amhius20-20\" target=\"_blank\">1948: Harry Truman's Improbable Victory and the Year that Transformed America</a></br>Richard Norton Smith - <a href=\"http://www.amazon.com/exec/obidos/ASIN/067141741X/amhius20-20\" target=\"_blank\">Thomas E. Dewey and His Times</a></br><a href=\"https://www.youtube.com/watch?v=rJABgG4YDwM\" target=\"_blank\">The 1948 Democratic Convention (newsreel footage)</a></br><a href=\"https://www.youtube.com/watch?v=ogg9YsxGQm4\" target=\"_blank\">The 1948 Republican Convention (newsreel footage)</a></br><a href=\"https://www.youtube.com/watch?v=LW2ae0Fznwg\" target=\"_blank\">The 1948 Election Explained (video)</a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://www.jetsimon.com/public/static/images/1960-no-majority-photo.jpg",
+            "creator": "Dan Bryan",
+            "display_year": "1956 Nixonland"
+        }
+    }
+]
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 117,
+        "fields": {
+            "first_name": "Richard M.",
+            "last_name": "Nixon",
+            "election": 12,
+            "party": "Republican",
+            "state": "California",
+            "priority": 2,
+            "description": "<p>Richard M. Nixon's life so far can be described as a shining example of the American Dream. Born as a commoner in some forgotten corner of California, Nixon has fought tooth and nail to climb up the ranks of society, from the Navy, to the House of Representatives, the Senate, there acquiring a reputation as a fierce anti-communist, until arriving at the Vice-Presidency, one heartbeat away from the presidency. Now fate has played a cruel trick and Eisenhower's heart has indeed stopped beating, placing the burden of the role of President upon the boy from Whittier.</p><p>With just one year away from election, Nixon is an uncouth man, an intruder viewed with suspicion by the plotting party elites who sought to remove this man from the vice presidency had Eisenhower lived to see 1956. Embattled yet inexperienced, Nixon finds precious little time to define himself in face of the sudden change in leadership.</p>",
+            "color_hex": "#d05353",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://i.imgur.com/uPcFtka.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1948 Presidential Election.</h3><p>You have become the first Republican to win the White House in 20 years. You face a dangerous foreign situation, and your domestic agenda is likely to be opposed by Democrats and conservatives alike. Conversely, the support and confidence of the Republican establishment is almost guaranteed. With luck, you might become the first two-term Republican since Ulysses Grant.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1948 Presidential Election.</h3><p>Pundits and political pros are shocked at your collapse. The second-guessing will likely come fast and furious from your party. The Republicans have now lost five Presidential elections in a row, and have no obvious standard-bearer to break the trend in 1952. As for your own career, you are still the Governor of New York, but it is pretty unlikely that you'll be given another chance to prove yourself on the national stage.</p>",
+            "no_electoral_majority_message": "<h3>No candidate captured an Electoral College majority.</h3><p>This leaves everyone in a bad situation. Segregationists from the South are demanding concessions before they will support a candidate, leaving the House deadlocked. Perhaps you can work out a deal with Truman to circumvent this, based on who has the plurality of popular and electoral votes. It's always possible that one of you could serve as the other's Vice President.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 118,
+        "fields": {
+            "first_name": "T. Coleman",
+            "last_name": "Andrews",
+            "election": 12,
+            "party": "States' rights",
+            "state": "Virginia",
+            "priority": 3,
+            "description": "'",
+            "color_hex": "#dfdf86",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 119,
+        "fields": {
+            "first_name": "Eric",
+            "last_name": "Hass",
+            "election": 12,
+            "party": "Socialist",
+            "state": "Nebraska",
+            "priority": 4,
+            "description": "'",
+            "color_hex": "#79d279",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 116,
+        "fields": {
+            "first_name": "Adlai",
+            "last_name": "Stevenson II",
+            "election": 12,
+            "party": "Democrat",
+            "state": "Illinois",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#4a4ab0",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/alben-barkley-1948.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Alben Barkley is a longtime Senate Leader for the Democrats, and an elder statesman of sorts within the Democratic Party. He has served his home state of Kentucky loyally for many years, and was a strong advocate of Roosevelt's New Deal. While other candidates have rejected Truman's overtures to serve as his running mate, for what they see as a lost cause, Barkley has graciously agreed to do his part for the 1948 ticket.</p>",
+            "candidate_score": 0,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 121,
+        "fields": {
+            "first_name": "Vacant",
+            "last_name": "",
+            "election": 12,
+            "party": "N/A",
+            "state": "N/A",
+            "priority": 11,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://i.imgur.com/mDtSzRZ.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    }
+]
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 127429,
+        "fields": {
+            "candidate": 117,
+            "running_mate": 121
+        }
+    }
+]
+
+campaignTrail_temp.credits = "Dan Bryan"
+
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 27,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+]
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 12,
+        "candidates": [
+            117,
+            118,
+            119,
+            116
+        ]
+    }
+]
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 12,
+        "candidates": [
+            117,
+            118,
+            119,
+            116
+        ]
+    }
+]
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 12,
+        "year": 1948,
+        "is_premium": 0,
+        "display_year": "1956 Nixonland"
+    }
+]
+
+jet_data = {
+    "headerColor": "#940000",
+    "windowColor": "#940000",
+    "containerColor": "#000000",
+    "innerWindowColor": "#ffffff",
+    "bannerImageUrl": "https://i.imgur.com/H2SotFL.png",
+    "backgroundImageUrl": "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+    "endingTextColor": "#000000",
+    "customQuote": ""
+}
+
+//#startcode
+
+
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#940000";
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#940000";
+
+document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+
+$("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+
+$(".container")[0].style.backgroundColor = "#000000";
+
+document.getElementById("header").src = "https://i.imgur.com/H2SotFL.png";
+
+document.body.background = "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg";
+
+document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#ffffff!important;}</style>";
+
+//#endcode
