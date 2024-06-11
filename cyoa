@@ -130,5 +130,3 @@ cyoAdventure = function(a) {
         campaignTrail_temp.questions_json[14] = tunnel(1305); 
         e.global_parameter_json[0].fields.question_count = 13;
     }
-        }
-    }
