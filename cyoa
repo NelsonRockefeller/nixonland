@@ -154,17 +154,17 @@ cyoAdventure = function(a) {
         finalDelusion = 1;
 
         document.getElementById("wittyquote").color = "red"
-        corrr='\n              <h2>JOE BIDEN</h2><font id="wittyquote" size="4" color="white"><em>PRESIDENT</em></font>\n            ';
+        corrr='\n              <h2>KNOWLANDING</h2><font id="wittyquote" size="4" color="white"><em>PRESIDENT</em></font>\n            ';
         
         var gameWindow = document.getElementById("game_window");
         gameWindow.style.backgroundColor = "rgb(0, 0, 136)";
 
         document.getElementById("header").src = "https://i.imgur.com/W39Y0be.png"
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#000088";
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#000088";
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#800808";
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#6E260E";
         document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
-        $(".container")[0].style.backgroundColor = "#8E1818"
-        document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
+        $(".container")[0].style.backgroundColor = "#FAA0A0"
+        document.body.background = "https://i.imgur.com/6gQ4bdk.jpeg"  
         
         document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
     }
