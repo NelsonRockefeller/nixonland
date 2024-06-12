@@ -180,3 +180,400 @@ cyoAdventure = function(a) {
     if(knowland == 6 && (e.noCounter == 6){
         campaignTrail_temp.questions_json[14] = tunnel(1305); 
     }
+   // Reveal
+    if(e.noCounter == 15 && dementiaMoments >= 6 && bidenReplaced == 0){
+        finalDelusion = 1;
+        campaignTrail_temp.questions_json[15] = tunnel(1314);   
+        e.global_parameter_json[0].fields.question_count = 16;
+
+        campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/SXLWUbU.png';
+        campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/NGWR7DG.png';
+
+        reveal = 1;
+        document.getElementById("wittyquote").color = "red"
+        corrr=`\n<h2>BIDEN</h2><font id='wittyquote' size='4' color='#E6CA9B'><em>`+customquote+`</em></font>`
+        
+        var gameWindow = document.getElementById("game_window");
+        gameWindow.style.backgroundColor = "rgb(29, 88, 186)";
+
+        document.getElementById("header").src = "https://i.imgur.com/DSDwY03.png"
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1D58BA"
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#ffffff"
+        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
+        $(".container")[0].style.backgroundColor = "#ffffff"
+        document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
+        
+        document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
+
+        var id = e.candidate_json.map(p=>p.pk).indexOf(77)
+        e.candidate_json[id].fields.first_name = "Donald"
+        e.candidate_json[id].fields.last_name = "Trump" 
+        e.candidate_json[id].fields.color_hex = "#ab3e37" 
+        
+        var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(78)
+        campaignTrail_temp.candidate_json[id].fields.color_hex = "#4265a1"
+
+        
+        var id = e.candidate_json.map(p=>p.pk).indexOf(79)
+        e.candidate_json[id].fields.first_name = "Robert F."
+        e.candidate_json[id].fields.last_name = "Kennedy Jr." 
+        e.candidate_json[id].fields.color_hex = "#e0a34c" 
+        
+        var id = e.candidate_json.map(p=>p.pk).indexOf(80)
+        e.candidate_json[id].fields.first_name = "Jill"
+        e.candidate_json[id].fields.last_name = "Stein" 
+        e.candidate_json[id].fields.color_hex = "#0d9e4c" 
+
+        campaignTrail_temp.election_json[0].fields.advisor_url = "https://i.imgur.com/HRao88e.png"
+    }
+    else if(e.noCounter == 15){
+        e.global_parameter_json[0].fields.question_count = 16;
+        finalReveal();
+    }
+
+    // Reveal
+    if(finalDelusion != 1){
+        if(bidenReplaced == 1 && (e.noCounter == 15)){                          // KAMALA PERSPECTIVE
+            campaignTrail_temp.questions_json[15] = tunnel(1278);   
+        }
+        else if(bidenReplaced == 0 && globalTension >= 3 && (e.noCounter == 15)){    // IRAN WAR
+            campaignTrail_temp.questions_json[15] = tunnel(1287);   
+        }
+        else if(bidenReplaced == 0 && globalTension < 3 && (e.noCounter == 15)){     // BIDEN REVEAL
+            campaignTrail_temp.questions_json[15] = tunnel(1260);   
+        }
+    }
+
+    if(ans == 1288 || ans == 1290){  
+        ctsAchievement("Back to the Stone Age");     
+
+        var features = "width=540,height=376,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no";
+        var popup = window.open("", "", features);
+        popup.document.write(`
+            <html>
+                <title>cmd</title>
+                <style>
+                    body {
+                        margin: 0;
+                        overflow: hidden;
+                        background-color: black;
+                    }
+                </style>
+                <body>
+                    <img src="https://i.imgur.com/14Yg0jP.gif" alt="gif">
+                </body>
+            </html>
+        `);
+        setTimeout(function(){
+            popup.close();
+        }, 2000);
+	    const topMenu = document.getElementById("header");
+        topMenu.remove();
+	    const gameContent = document.getElementById("game_window");
+        gameContent.remove();
+	    const credits = document.getElementById("site_credits");
+        credits.remove();
+        var elements_we = document.querySelectorAll(".menu_bar_login");
+        elements_we.forEach(function(element) {
+            element.classList.remove("menu_bar_login");
+        });
+        var elements_wet = document.querySelectorAll(".content_box");
+        elements_wet.forEach(function(element) {
+            element.classList.remove("content_box");
+        });
+        var elements_zero = document.querySelectorAll(".content_single");
+        elements_zero.forEach(function(element) {
+            element.classList.remove("content_single");
+        });
+        var elements_one = document.querySelectorAll(".footer");
+        elements_one.forEach(function(element) {
+            element.classList.remove("footer");
+        });
+        var elements_two = document.querySelectorAll(".container");
+        elements_two.forEach(function(element) {
+            element.classList.remove("container");
+        });
+    }
+}
+
+let vpName = "Kamala Harris";
+
+vpTable = {
+    "Joe Biden" : vpName,
+    "Donald Trump" : "J.D. Vance",
+    "Robert F. Kennedy Jr." : "Nicole Shanahan",
+    "Jill Stein" : "Mark Dunlea",
+    
+    "George Bush" : "I don't know",
+    "Jerry Brown" : "I don't know",
+    "Lenora Fulani" : "I don't know",
+
+	"Kamala Harris" : "Jared Polis",
+}
+
+vpTableHistorical = {
+    "Joe Biden" : "Kamala Harris",
+    "Donald Trump" : "J.D. Vance",
+    "Robert F. Kennedy Jr." : "Nicole Shanahan",
+    "Jill Stein" : "Mark Dunlea",
+}
+HistHexcolour=["#4265a1","#ab3e37","#e0a34c","#0d9e4c"];
+HistName=["Joe Biden","Donald Trump","Robert F. Kennedy Jr.","Jill Stein"];
+HistEV=[270,268,0,0];
+HistPV=["74,155,092","74,314,223","6,842,643","1,273,049"];
+HistPVP=["46.6%","46.7%","4.3%","0.8%"];
+
+function onGameWindowChangeCandidates() {
+    const resultsTableHolder = document.getElementById("overall_details_container");
+
+    if(!resultsTableHolder || resultsTableHolder.classList.contains("done")) {
+        return;
+    }
+
+    resultsTableHolder.classList.add("done");
+
+    const resultsTable = resultsTableHolder.childNodes[3].childNodes[3].children[0];
+    
+    for(let i = 0; i < resultsTable.children.length; i++) {
+        const row = resultsTable.children[i];
+        let name = row.firstChild.innerText;
+        row.insertCell(1);
+        if(name) {
+            name = name.replaceAll("-", "").trim();
+            console.log("name is:" + name)
+        }
+
+        if(i == 0) {
+            row.children[1].innerHTML = `<span style="font-weight:bold">Running Mate<span>`;
+        }
+        else {
+            row.children[1].innerHTML = vpTable[name];
+        }
+    }
+
+    
+    const resultsTableHistorical = resultsTableHolder.childNodes[5].childNodes[3].children[0];
+    
+    for(let i = 0; i < resultsTableHistorical.children.length; i++) {
+        const row = resultsTableHistorical.children[i];
+        let name = row.childNodes[1].innerText;
+        row.insertCell(1);
+        if(name) {
+            name = name.replaceAll("-", "").trim();
+        }
+
+        if(i == 0) {
+            row.children[1].innerHTML = `<span style="font-weight:bold">Running Mate<span>`;
+        }
+        else {
+            row.children[1].innerHTML = vpTableHistorical[name];
+        }
+    }
+}
+
+construct = (a = 1) => {
+    e.page = e.page + a < e.pages.length ? e.page + a : 0
+    let html = e.header;
+    html += e.pages[e.page] + "<br>";
+    if (e.page > 0) {
+      html += `<button onclick='endingConstructor(a = -1)'>Back</button>`
+    }
+    if (e.page < e.pages.length - 1) {
+      html += `<button onclick='endingConstructor(a = 1)'>Next</button>`
+    }
+
+    for (i in e.executable) {
+        if (e.executable[i][0] == e.page) {
+            e.executable[i][1]();
+        }
+      }
+  
+    if (e.image == true)
+      setTimeout(()=>{
+        candImg = $(".person_image")[0]
+        if (candImg) {
+          candImg.remove()
+          $("#final_results_description")[0].style = `
+            text-align:center;
+            width: 62%;
+	        height:69%;
+            text-overflow: ellipsis;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: auto;
+          `
+          console.log("RESULTS UPDATED");
+        }
+      }, 10)
+      else if (e.image)
+      setTimeout(()=>{
+        candImg = $(".person_image")[0];
+        if (candImg) {
+          candImg.src = e.image;
+          console.log("TRYING");
+          $("#final_results_description")[0].style = `
+            text-align:center;
+            width: 77%;
+            height:72%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: auto;
+          `
+           console.log("RESULTS UPDATED");
+        }		
+      }, 10)
+    
+
+    return html;
+}
+  
+  endingConstructor = (a = 1) => {
+    $("#final_results_description")[0].innerHTML = construct(a);
+  }
+
+e.multiple_endings = true;
+e.congEVs = false
+
+endingPicker = (out, totv, aa, quickstats) => {
+
+    e.pages = []
+    e.header = "";
+    e.executable = []
+
+    orderID = [aa[0].candidate, aa[1].candidate, aa[2].candidate, aa[3].candidate];
+    var playerEV = quickstats[0];
+    nct_stuff.themes[nct_stuff.selectedTheme].text_col = "black"
+    var gameWindow = document.getElementById("game_window");
+    gameWindow.style.backgroundColor = "rgb(255, 255, 255)";
+
+    if (!e.congEVs) {
+        e.congEVs = true;
+        changeState(207, 78, 1);
+        changeState(199, 77, 1);
+    }
+
+    if (quickstats[0] >= 270 && finalDelusion == 0 && bidenReplaced == 0) { // That's a Biden Win!
+        e.pages.push(`<h3>Congratulations... you... you won... the 2024 presidential election.</h3>
+                  <p>You're still here. You're... holding on. The lights they're... so bright. You can't go out. The faces blur in front of you. You tell Kamala you can't go out... It's okay, Joe, she says. It's okay. Let me handle it. Let me handle it for you. You grip her hands tightly but she disentangles her grip from your's and then goes into the hallway. You hear her talking to Beau... No... It's not Beau... You have to remind yourself. It's... Yes. Jake. Kamala is telling Jake that Biden can't go on. He asks what does she mean and she says, Christ, Jake, fucking look at him. Look at what you've done. You better hope and pray no one finds out because they'll tear you to pieces. That shuts him up and...<br><br>Oh look, she's on television now... The crowds are... They... They're confused. She's thanking the crowd for their support for light over darkness, for hope over fear, for... She's talking about you. She's talking about how you two are going to fight hard to save America's families. There may be some changes in the coming days but she hopes... stay with us... we can begin to pass the torch to a new generation. You are speechless at that but before you know it Kamala is right back at your side. Come on, Joe, she whispers softly. You nod along and follow her out into the hallway and into your car and into the night.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/nbPaoDI.png'})])
+        ctsAchievement("The Great American Comeback");  
+    }
+    else if (quickstats[0] >= 270 && quickstats[0] < 349 && bidenReplaced == 1) { // That's a Harris Win!
+        e.pages.push(`<h3>Congratulations! You won the 2024 presidential election.</h3>
+                  <p>You breathe a sigh of relief a week after the election when the final votes are tallied. While everyone counted you out after the president's health crisis, you never doubted your hard work could make the difference. But now, can you bring the country together after a tumultuous few years? Will you be able to stop a vengeful Trump from trying re-enacting January 6th? Most importantly, how will you handle the legacy of your predecessor, a man who even now seems unaware that his time in power is coming to an end? Only time will tell, but hopefully the wounds will heal in time.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/0P4uBQu.png'})])
+        ctsAchievement("ijbol Veteran");  
+    }
+    else if (quickstats[0] >= 349 && bidenReplaced == 1) { // That's a Harris Landslide!
+        e.pages.push(`<h3>ijbol. You won the 2024 presidential election in a landslide!</h3>
+                  <p>With the crucial swing states counting their votes far faster than in 2020, the result was clear early on in the night: you won this election, and by a lot. You ran a masterful campaign, calling on just the right issues to re-assemble the anti-Trump majority after the president nearly shattered it. What comes next after these tumultuous few years? Will your fresh face be enough to finally bring the country together? Only time will tell, but one thing is for certain: those who counted you out will rue the day they chose not to support you.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/8y8dLs9.png'})])
+        ctsAchievement("ijbol Veteran");  
+        ctsAchievement("The New FDR");  
+    }
+    else if (quickstats[0] >= 270 && finalDelusion == 1 && bidenReplaced == 0) { // That's a Biden '92 Win!
+        e.pages.push(`<h3>Sorry! You have won the 1992 presidential election!</h3>
+                  <p>The Elites insisted that you didn't have it in you, that the crises of your term had left you washed up and hollowed out, but you proved the naysayers wrong as you did so many times before. They could not understand the power of your movement, your determination to succeed. As you stumble forward into the lights of the stage at your election party you hear gasps of sheer excitement, cries of awful joy. Your brilliant acceptance speech is broadcast around the world and America finally sees you for what you really are, transfixed by it. Even Beau, standing off stage, cannot contain himself. He holds his hand to his mouth to stop himself from screaming with delight.<br><br>Only one person seems to resist the spectacle of the night and that's Pat, who keeps trying to push you off stage. It's outrageous, you realize, her attempt to hog the limelight for herself, but you always thought she was a bit of a glory hound. You'll have to remember to keep her far away from you in your second term. You can't have anyone holding you back, after all. You and your A-Team are going to remake the world. You and Beau are going to go down in history. No one is ever going to forget what you accomplished here tonight.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/CsJujtl.png'})])
+        ctsAchievement("No Malarkey!");  
+    }
+    else if (quickstats[0] == 269 && finalDelusion == 0 && bidenReplaced == 0) { // That's a Biden Tie!
+        e.pages.push(`<h3>Oh... It's... It's a tie?</h3>
+                  <p>Your heart slinks... Sinks... It... Oh... It's a tie... the first in... what year is it? 2024. The first in 200 years. And the consequences... How many are there in the House? The Senate? You can't remember. All you know is you're supposed to go out there but the television is so loud and none of the faces of the newscasters make sense and you feel like you're drowning in the backroom so much so that you tell... Kamala. You tell Kamala that it's too much. You can't go on and she says okay, Joe. It'll be okay. I'll handle it. Don't worry. And she gives you a hesitant pat on the shoulder before escaping into the hallway where you hear her talking to Beau. No. No. Not Beau. It's... Jake... Sullivan, who is asking where the hell she's going and she's saying she's going to the stage and he asks her why she's trying to undermine the president and she tells him to shut the fuck up. Go in there and look at what you've done, Jake. I'm cleaning up the mess you made and if I see you here when I get back, I'm going to have the Secret Service throw your ass on the street. That shuts him up and..<br><br>Oh look, she's on television now. They... They're confused. She's thanking them for their support. She knows this result is... not what they expected, but she promises to work hard with the Congress to make sure the counting of votes and the contingent is peaceful... It won't be like... It's not going to... January 6th. Yes. She'll fight for our democracy, even when it's hard to love. Well, isn't that a nice sentiment, you mutter, and before you know it she's back and at your side. Okay, Joe, let's go, she says. You nod quietly and let her walk you to the hall and to your car and then your car disappears into the night.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/igohrbU.png'})])
+    }
+    else if (quickstats[0] == 269 && bidenReplaced == 1) { // That's a Harris Tie!
+        e.pages.push(`<h3>It's a tie!?</h3>
+                  <p>Despite the 269-269 split, the number of state delegations controlled by Republicans in the House of Representatives means that it's likely Donald J. Trump will be the next president. A lot of liberals are distraught and outraged that the election came down to such a technicality, but you comfort yourself with the hope that this narrow victory delegitimizes him. Hopefully your strong showing will motivate Democrats to support you again in 2028—if America's democracy survives that long.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/HKXOGN6.png'})])
+    }
+    else if (quickstats[0] == 269 && finalDelusion == 1 && bidenReplaced == 0) { // That's a Biden '92 Tie!
+        e.pages.push(`<h3>You Tie!?</h3>
+                  <p>It was inevitable that such an unprecedented term could have such an unprecedented end. For the first time since 1824, no candidate has gotten a majority of votes in the Electoral College, throwing the results to the Congress. Luckily, you've long built relationships with many of the members there—Barbara Jordan, Tom Foley, and Carl Roberts—who you will be able to call on to prevail in that most sacred contest. But for now, you address your supports and tell them that the fight is not yet over. The assembled believers are awed by your speech, rendered silent by your eloquence. They shake their heads in wonder and look at one another with fearful awe. Your muttering even stuns Beau who gasps and holds his hand over his mouth to stop himself from speaking.<br><br>Only one person seems to resist the spectacle of the night and that's Pat, who keeps trying to push you off stage. It's outrageous, you realize, her attempt to hog the limelight for herself, but you always thought she was a bit of a glory hound. You'll have to remember to keep her far away when you negotiate with the House for your place in the Oval Office. After all, the work is not done. You and your A-Team still need to remake the world. You and Beau need to go down in history. No one should forget what you accomplished here tonight.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/i9DwDO0.png'})])
+    }
+    else if (quickstats[0] < 269 && finalDelusion == 0 && bidenReplaced == 0) { // That's a Biden Loss!
+        e.pages.push(`<h3>Sorry... Oh... I'm so sorry... you lost... you lost... the 2024 presidential election.</h3>
+                  <p>You're still here and that makes the loss all the more brutal. The map... a sea of red. It sears your eyes. It breaks your heart. Your whole mission... Your whole drive... It was to prevent something like this from happening. It was to stop.... Trump. Donald Trump who has... Project 2024. A dark vision. You can't go on. You bury your head in your hands while Kamala pats your back. You tell her you can't go out. You can't go on. All the faces are blurring together. The names are broken. You can't remember... It's okay Joe, she says, it'll be okay. I'll handle it. Just stay here. Just hold on, and then she goes out into the hall and you can hear her talking to Beau, no... Not Beau. It's.. Jake. Jake Sullivan. She's telling Jake that you can't go on and he says what do you mean are you trying to pull a Palin and her voice goes low and she says look at him Jake look at what you've done. I'm cleaning up your shit and you better fucking hope I do a good job. That shuts him up and...<br><br>Oh look, she's on television now... The crowds are... They... They're confused. She's thanking them for their support. She knows this result is... disappointing but the two of you will never stop fighting... Never stop. It's one of the best speeches, you think, even though the words slide out like dead letters and her face is... Warped. Maybe there's a future for her in this new America... if America survies at all. All you know is that when she comes back, she helps you up and gives you a tight hug before helping you out into the hallway and into your car and into the night.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/ri0dQyi.png'})])
+    }
+    else if (quickstats[0] < 269 && bidenReplaced == 1) { // That's a Harris Loss!
+        e.pages.push(`<h3>Sorry! You lost the 2024 presidential election.</h3>
+                  <p>The result isn't unexpected after the president's health crisis but still the loss is painful. Come January, you will have to turn over the keys of government to Donald J. Trump, a man that you once described as the greatest threat to America's democracy. Will the country's institutions hold? Will Biden’s legacy and your work survive the assault that Trump plans to inflict? Only time will tell, but hopefully you'll be ready to make a difference come 2028.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/R78r23p.png'})])
+    }
+    else if (quickstats[0] < 269 && finalDelusion == 1 && bidenReplaced == 0) { // That's a Biden '92 Loss!
+        e.pages.push(`<h3>Congratulations! You have lost the 1992 presidential election!</h3>
+                  <p>It was a hard-fought battle against the Establishment. They stacked the deck and rigged the game the best they could. It was inevitable that you would fall, but worry not. The Elites have made you a martyr. By striking you down, they have only motivated your dogged supporters to try harder, to push further. Autocrat though he may be, Bush's victory will soon turn to ash in his mouth. At least, this is what you say in your brilliant concession speech before the silent crowd. They are moved to silence by your words, shocked by your vigor and inteligibleness. You spot people in the crowd so moved that they begin to cry. Even the news reporters broadcasting your remarks are speechless. Their ashen faces and striken expresions betray their guilt at their betrayal.<br><br>Only one person seems to resist the magnificence of your speech and that's Pat, who keeps trying to push you off stage. It's outrageous, you realize, her attempt to hog the limelight for herself, but you always thought she was a bit of a glory hound. You'll have to remember to keep her far away when you run for president in the next election. Hell, if Bush could do it, why can't you? You and your A-Team have done too much to fall into the dustbin of history. You and Beau are going to be remembered forever. No one is ever going to forget the speech you delivered here tonight.</p>`)
+        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/oKQEDmM.png'})])
+    }
+
+    // Landslide!
+    if (quickstats[0] >= 319 && finalDelusion == 0 && bidenReplaced == 0) {
+        ctsAchievement("Diamond Joe");  
+    }
+    return construct(0);
+}
+
+changeState = (statePK, candidateId, amount = true) => {
+
+    // the rest shouldn't need to be changed (maybe)
+    const state = e.states_json[e.states_json.map(f=>f.pk).indexOf(statePK)];
+    const electoralVoteCount = state.fields.electoral_votes;
+    const sMI = e.final_state_results.map(f=>f.state).indexOf(statePK)
+    
+    // find biden's results in AL
+    bidenAL = e.final_state_results[sMI].result[e.final_state_results[sMI].result.map(f=>f.candidate).indexOf(candidateId)]
+
+    let change;
+    
+    if (quickstats[1] > 0.03) {
+        winnerAL = e.final_state_results[sMI].result[0].candidate
+        if (amount === true) {
+            // clear existing EV allocations
+            e.final_state_results[sMI].result.forEach((a, i, arr) => {
+                arr[i].electoral_votes = 0
+            })
+        
+            // give biden EVs
+            bidenAL.electoral_votes = electoralVoteCount
+
+            change = electoralVoteCount;
+        } else {
+            // clear existing EV allocations
+            e.final_state_results[sMI].result.forEach((a, i, arr) => {
+                arr[i].electoral_votes = 0
+            })
+            e.final_state_results[sMI].result[0].electoral_votes = electoralVoteCount - amount
+        
+            // give biden EVs
+            bidenAL.electoral_votes = amount
+
+            change = amount;
+    
+        }
+    
+        bidenFinalOverall = e.final_overall_results[e.final_overall_results.map(f=>f.candidate).indexOf(candidateId)]
+        ALwinnerOverall = e.final_overall_results[e.final_overall_results.map(f=>f.candidate).indexOf(winnerAL)]
+        bidenFinalOverall.electoral_votes += change
+        ALwinnerOverall.electoral_votes -= change
+        
+    }   
+}
+
+document.getElementById("music_player").innerHTML = "<button onclick='music_play()'>Play Soundtrack</button>     <button onclick='music_pause()'>Pause</button><br><div style='font-size:0.75em'><input type='radio' name='jukebox' value='song0' onchange='jukebox0()'>Goodbye Stranger</div><audio id='campaigntrailmusic' loop='true' style='display:none' src='' autoplay='false'></audio>"
+
+music_play = function() {
+    document.getElementById("campaigntrailmusic").play()
+}
+
+music_pause = function() {
+    document.getElementById("campaigntrailmusic").pause()
+}
+
+jukebox0 = function() {
+    campaignTrail_temp.musicSrc = "https://dl.dropboxusercontent.com/scl/fi/1vfylnmkt6dd2vybraxnu/goodbyestranger.mp3?rlkey=his99blrfhy52g9n75qq6rbgz&st=voj0fql4"
+    document.getElementById('campaigntrailmusic').src = campaignTrail_temp.musicSrc
+}
