@@ -9366,19 +9366,19 @@ cyoAdventure = function(a) {
     e.noCounter += 1
 
     // Dementia Moments
-    if(ans == 1139){
+    if(ans == 3897){
         dementiaMoments += 1;
     }
-    if(ans == 1148){
-        dementiaMoments += 1;
-    }
-    if(ans == 1150){
+    if(ans == 3896){
         dementiaMoments += 2;
     }
-    if(ans == 1157){
+    if(ans == 3904){
+        dementiaMoments += 2;
+    }
+    if(ans == 3872){
         dementiaMoments += 1;
     }
-    if(ans == 1177){
+    if(ans == 3873){
         dementiaMoments += 2;
     }
     if(ans == 1182){
@@ -9455,13 +9455,13 @@ cyoAdventure = function(a) {
     // Question CYOA
     
     // Kamala DNC
-    if(dementiaMoments >= 7 && (e.noCounter == 13)){
-        bidenReplaced = 1;
-        campaignTrail_temp.questions_json[13] = tunnel(1269);   
+    if(dementiaMoments >= 2 && (e.noCounter == 0)){
+        bidenReplaced = 0;
+        campaignTrail_temp.questions_json[12] = tunnel(13695);   
     }
     // Kamala Candidate Campaigning
-    if(bidenReplaced == 1 && (e.noCounter == 14)){
-        campaignTrail_temp.questions_json[14] = tunnel(1305);   
+    if(bidenReplaced == 0 && (e.noCounter == 0)){
+        campaignTrail_temp.questions_json[13] = tunnel(1305);   
     }
 
     if(e.noCounter == 13){ // enables state visits so you see the map
