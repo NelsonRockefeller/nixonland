@@ -9532,7 +9532,10 @@ cyoAdventure = function(a) {
             campaignTrail_temp.questions_json[15] = tunnel(1260);   
         }
     }
-
+     if(ans == 13760){
+        campaignTrail_temp.questions_json[16] = tunnel(3907);
+        console.log ("Goldie")
+    }
     if(ans == 1288 || ans == 1290){  
         ctsAchievement("Back to the Stone Age");     
 
