@@ -9455,12 +9455,12 @@ cyoAdventure = function(a) {
     // Question CYOA
     
     // Kamala DNC
-    if(dementiaMoments >= 2 && (e.noCounter == 0)){
+    if(dementiaMoments >= 4 && (e.noCounter == 4)){
         bidenReplaced = 0;
         campaignTrail_temp.questions_json[12] = tunnel(13695);   
     }
     // Kamala Candidate Campaigning
-    if(bidenReplaced == 0 && (e.noCounter == 0)){
+    if(bidenReplaced == 0 && (e.noCounter == 4)){
         campaignTrail_temp.questions_json[13] = tunnel(1305);   
     }
 
