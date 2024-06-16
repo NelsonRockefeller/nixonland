@@ -8643,1214 +8643,428 @@ campaignTrail_temp.jet_data = [{
 
 
 
-let e = campaignTrail_temp;
-e.global_parameter_json[0].fields.question_count = 25
+campaignTrail_temp.cyoa = true
+lilyWhite = 0;
+north = 0;
+dummy = 0;
+equal = 0;
 
-function ctsAchievement(achievement, difficultyChecker = true){
-	if ((difficultyChecker && campaignTrail_temp.difficulty_level_multiplier<=1)||!difficultyChecker)
-		if(campaignTrail_temp.CTS){
-		unlockAchievement(achievement);
-	}
-}
+cyoAdventure = function (a) {
 
-customquote = quotes[Math.floor((Math.random() * quotes.length))]
-campaignTrail_temp.running_mate_last_name = '';
-campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/nW9C36y.png';
-campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/krpw10L.png';
-campaignTrail_temp.candidate_last_name = '';
-
-campaignTrail_temp.cyoa = true;
 e=campaignTrail_temp
-// vars
-var reveal = 0;
-var bidenReplaced = 0
-var dementiaMoments = 0;
-var globalTension = 0;
-var finalDelusion = 0;
-e.noCounter = 0
+ans = campaignTrail_temp.player_answers[campaignTrail_temp.player_answers.length - 1]
 
-const targetNode = document.getElementById("game_window");
-const config = { attributes: true, childList: true, subtree: true };
+if (e.question_number == 3) {
+     window.setTimeout(e.vpSwitcher, 20)
+}
+// This changes the perspective every so often.
 
-function onGameWindowChanged(mutationList, observer) {
-	updateQuestionBanner();
+// Scoring for Providence
+if (ans == 1415) {
+    dummy += 1;
+}
+if (ans == 2595) {
+    dummy += 1;
+}
+if (ans == 1612) {
+    dummy += 1;
 }
 
-const observer = new MutationObserver(onGameWindowChanged);
-observer.observe(targetNode, config);
-
-function updateQuestionBanner() {
-	let questionBanner = document.getElementById("campaign_sign");
-	if(!questionBanner || questionBanner.nodeName != "DIV") return;
-	let img = document.createElement('img');
-	if(reveal == 0){
-        img.src = 'https://i.imgur.com/jXrJXI3.png';
-    }
-    else if(reveal == 1 && bidenReplaced == 0){
-        img.src = 'https://i.imgur.com/jeu8Ey5.png';
-    }
-    else{
-        img.src = 'https://i.imgur.com/QMW4Y6J.png';
-    }
-	questionBanner.replaceWith(img);
+// Scoring for Tounge of Fire
+if (ans == 1523) {
+    equal += 1;
 }
 
-function tunnel(new_q){
-    return e.questions_json[e.questions_json.map(f=>f.pk).indexOf(new_q)];
-}  
-
-function modernizeStates() {
-    // AL
-    var id = e.states_json.map(p=>p.pk).indexOf(181)
-    e.states_json[id].fields.electoral_votes = 9;
-    e.states_json[id].fields.popular_votes = 359530;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(868)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(869)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(870)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(871)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(872)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // AK
-    var id = e.states_json.map(p=>p.pk).indexOf(182)
-    e.states_json[id].fields.electoral_votes = 3;
-    e.states_json[id].fields.popular_votes = 285560;
-    // AZ
-    var id = e.states_json.map(p=>p.pk).indexOf(183)
-    e.states_json[id].fields.electoral_votes = 11;
-    e.states_json[id].fields.popular_votes = 3387326;
-    // AR
-    var id = e.states_json.map(p=>p.pk).indexOf(184)
-    e.states_json[id].fields.electoral_votes = 6;
-    e.states_json[id].fields.popular_votes = 1219069;
-        // polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(883)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5; 
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(884)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(885)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(886)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(887)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-
-    // CA
-    var id = e.states_json.map(p=>p.pk).indexOf(185)
-    e.states_json[id].fields.electoral_votes = 54;
-    e.states_json[id].fields.popular_votes = 17500881;
-    // CO
-    var id = e.states_json.map(p=>p.pk).indexOf(186)
-    e.states_json[id].fields.electoral_votes = 10;
-    e.states_json[id].fields.popular_votes = 3256980;
-        // REV-Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(893)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 0.4;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(894)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 2;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(895)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 3;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(896)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(897)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.1;
-    e.state_issue_score_json[id].fields.weight = 0.2;
-    // CT
-    var id = e.states_json.map(p=>p.pk).indexOf(187)
-    e.states_json[id].fields.electoral_votes = 7;
-    e.states_json[id].fields.popular_votes = 1823857;
-        // REV-Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(898)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 0.4;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(899)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(900)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 3;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(901)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(902)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    // DE
-    var id = e.states_json.map(p=>p.pk).indexOf(188)
-    e.states_json[id].fields.electoral_votes = 3;
-    e.states_json[id].fields.popular_votes = 504346;
-    // FL
-    var id = e.states_json.map(p=>p.pk).indexOf(189)
-    e.states_json[id].fields.electoral_votes = 30;
-    e.states_json[id].fields.popular_votes = 11067456;
-    // GA
-    var id = e.states_json.map(p=>p.pk).indexOf(190)
-    e.states_json[id].fields.electoral_votes = 16;
-    e.states_json[id].fields.popular_votes = 4999960;
-    // HI
-    var id = e.states_json.map(p=>p.pk).indexOf(191)
-    e.states_json[id].fields.electoral_votes = 4;
-    e.states_json[id].fields.popular_votes = 574469;
-    // ID
-    var id = e.states_json.map(p=>p.pk).indexOf(192)
-    e.states_json[id].fields.electoral_votes = 4;
-    e.states_json[id].fields.popular_votes = 868014;
-    // IL
-    var id = e.states_json.map(p=>p.pk).indexOf(193)
-    e.states_json[id].fields.electoral_votes = 19;
-    e.states_json[id].fields.popular_votes = 6033744;
-    // IN
-    var id = e.states_json.map(p=>p.pk).indexOf(194)
-    e.states_json[id].fields.electoral_votes = 11;
-    e.states_json[id].fields.popular_votes = 3033121;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(933)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(934)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(935)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(936)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(937)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    // IA
-    var id = e.states_json.map(p=>p.pk).indexOf(195)
-    e.states_json[id].fields.electoral_votes = 6;
-    e.states_json[id].fields.popular_votes = 1690871;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(938)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(939)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(940)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(941)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(942)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-
-    // KS
-    var id = e.states_json.map(p=>p.pk).indexOf(196)
-    e.states_json[id].fields.electoral_votes = 6;
-    e.states_json[id].fields.popular_votes = 1372303;
-    // KY
-    var id = e.states_json.map(p=>p.pk).indexOf(197)
-    e.states_json[id].fields.electoral_votes = 8;
-    e.states_json[id].fields.popular_votes = 2136768;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(948)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(949)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(950)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(951)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(952)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.8;
-
-    // LA
-    var id = e.states_json.map(p=>p.pk).indexOf(198)
-    e.states_json[id].fields.electoral_votes = 8;
-    e.states_json[id].fields.popular_votes = 2148062;
-        // polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(953)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.7;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(954)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.7;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(955)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.7;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(956)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.7;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(957)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.7;
-
-    // ME
-    var id = e.states_json.map(p=>p.pk).indexOf(199)
-    e.states_json[id].fields.electoral_votes = 4;
-    e.states_json[id].fields.popular_votes = 819461;
-    // MD
-    var id = e.states_json.map(p=>p.pk).indexOf(200)
-    e.states_json[id].fields.electoral_votes = 10;
-    e.states_json[id].fields.popular_votes = 3037030;
-    // MA
-    var id = e.states_json.map(p=>p.pk).indexOf(201)
-    e.states_json[id].fields.electoral_votes = 11;
-    e.states_json[id].fields.popular_votes = 3631402;
-    // MI
-    var id = e.states_json.map(p=>p.pk).indexOf(202)
-    e.states_json[id].fields.electoral_votes = 15;
-    e.states_json[id].fields.popular_votes = 5539302;
-    // MN
-    var id = e.states_json.map(p=>p.pk).indexOf(203)
-    e.states_json[id].fields.electoral_votes = 10;
-    e.states_json[id].fields.popular_votes = 3277171;
-    // MS
-    var id = e.states_json.map(p=>p.pk).indexOf(204)
-    e.states_json[id].fields.electoral_votes = 6;
-    e.states_json[id].fields.popular_votes = 1313759;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(983)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(984)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(985)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(986)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(987)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // MO
-    var id = e.states_json.map(p=>p.pk).indexOf(205)
-    e.states_json[id].fields.electoral_votes = 10;
-    e.states_json[id].fields.popular_votes = 3025962;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(988)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(989)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(990)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(991)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(992)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    // MT
-    var id = e.states_json.map(p=>p.pk).indexOf(206)
-    e.states_json[id].fields.electoral_votes = 4;
-    e.states_json[id].fields.popular_votes = 603674;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(993)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(994)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(995)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(996)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(997)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // NE
-    var id = e.states_json.map(p=>p.pk).indexOf(207)
-    e.states_json[id].fields.electoral_votes = 5;
-    e.states_json[id].fields.popular_votes = 956383;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(998)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(999)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1000)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1001)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1002)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // NV
-    var id = e.states_json.map(p=>p.pk).indexOf(208)
-    e.states_json[id].fields.electoral_votes = 6;
-    e.states_json[id].fields.popular_votes = 1405376;
-    // NH
-    var id = e.states_json.map(p=>p.pk).indexOf(209)
-    e.states_json[id].fields.electoral_votes = 4;
-    e.states_json[id].fields.popular_votes = 806205;
-        // REV-Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1008)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 0.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1009)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1010)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.3;
-    e.state_issue_score_json[id].fields.weight = 3;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1011)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1012)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 1;
-    // NJ
-    var id = e.states_json.map(p=>p.pk).indexOf(210)
-    e.states_json[id].fields.electoral_votes = 14;
-    e.states_json[id].fields.popular_votes = 4549353;
-        // REV-Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1013)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1014)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1015)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1016)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1017)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.5;
-    e.state_issue_score_json[id].fields.weight = 1;
-    // NM
-    var id = e.states_json.map(p=>p.pk).indexOf(211)
-    e.states_json[id].fields.electoral_votes = 5;
-    e.states_json[id].fields.popular_votes = 923965;
-    // NY
-    var id = e.states_json.map(p=>p.pk).indexOf(212)
-    e.states_json[id].fields.electoral_votes = 28;
-    e.states_json[id].fields.popular_votes = 8594826;
-    // NC
-    var id = e.states_json.map(p=>p.pk).indexOf(213)
-    e.states_json[id].fields.electoral_votes = 16;
-    e.states_json[id].fields.popular_votes = 5524804;
-    // ND
-    var id = e.states_json.map(p=>p.pk).indexOf(214)
-    e.states_json[id].fields.electoral_votes = 3;
-    e.states_json[id].fields.popular_votes = 361819;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1033)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1034)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1035)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1036)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1037)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // OH
-    var id = e.states_json.map(p=>p.pk).indexOf(215)
-    e.states_json[id].fields.electoral_votes = 17;
-    e.states_json[id].fields.popular_votes = 5922202;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1038)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 1.6;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1039)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 1.6;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1040)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1.6;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1041)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1.6;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1042)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.4;
-    e.state_issue_score_json[id].fields.weight = 1.6;
-    // OK
-    var id = e.states_json.map(p=>p.pk).indexOf(216)
-    e.states_json[id].fields.electoral_votes = 7;
-    e.states_json[id].fields.popular_votes = 1560699;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1043)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1044)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1045)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1046)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1047)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // OR
-    var id = e.states_json.map(p=>p.pk).indexOf(217)
-    e.states_json[id].fields.electoral_votes = 8;
-    e.states_json[id].fields.popular_votes = 2374321;
-    // PA
-    var id = e.states_json.map(p=>p.pk).indexOf(218)
-    e.states_json[id].fields.electoral_votes = 19;
-    e.states_json[id].fields.popular_votes = 6915283;
-    // RI
-    var id = e.states_json.map(p=>p.pk).indexOf(219)
-    e.states_json[id].fields.electoral_votes = 4;
-    e.states_json[id].fields.popular_votes = 517757;
-    // SC
-    var id = e.states_json.map(p=>p.pk).indexOf(220)
-    e.states_json[id].fields.electoral_votes = 9;
-    e.states_json[id].fields.popular_votes = 2513329;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1063)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1064)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1065)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1066)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1067)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // SD
-    var id = e.states_json.map(p=>p.pk).indexOf(221)
-    e.states_json[id].fields.electoral_votes = 3;
-    e.states_json[id].fields.popular_votes = 422609;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1068)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1069)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1070)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1071)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1072)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // TN
-    var id = e.states_json.map(p=>p.pk).indexOf(222)
-    e.states_json[id].fields.electoral_votes = 11;
-    e.states_json[id].fields.popular_votes = 3053851;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1073)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1074)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1075)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1076)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1077)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 1.5;
-    // TX
-    var id = e.states_json.map(p=>p.pk).indexOf(223)
-    e.states_json[id].fields.electoral_votes = 40;
-    e.states_json[id].fields.popular_votes = 11315056;
-    // UT
-    var id = e.states_json.map(p=>p.pk).indexOf(224)
-    e.states_json[id].fields.electoral_votes = 6;
-    e.states_json[id].fields.popular_votes = 11315056;
-    // VT
-    var id = e.states_json.map(p=>p.pk).indexOf(225)
-    e.states_json[id].fields.electoral_votes = 3;
-    e.states_json[id].fields.popular_votes = 367428;
-    // VA
-    var id = e.states_json.map(p=>p.pk).indexOf(226)
-    e.states_json[id].fields.electoral_votes = 13;
-    e.states_json[id].fields.popular_votes = 4460524;
-        // REV-Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1093)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1094)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1095)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.4;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1096)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.1;
-    e.state_issue_score_json[id].fields.weight = 1;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1097)
-    e.state_issue_score_json[id].fields.state_issue_score = 0.2;
-    e.state_issue_score_json[id].fields.weight = 1;
-    // WA
-    var id = e.states_json.map(p=>p.pk).indexOf(227)
-    e.states_json[id].fields.electoral_votes = 12;
-    e.states_json[id].fields.popular_votes = 4087631;
-    // DC
-    var id = e.states_json.map(p=>p.pk).indexOf(228)
-    e.states_json[id].fields.electoral_votes = 3;
-    e.states_json[id].fields.popular_votes = 344356;
-    // WV
-    var id = e.states_json.map(p=>p.pk).indexOf(229)
-    e.states_json[id].fields.electoral_votes = 4;
-    e.states_json[id].fields.popular_votes = 794731;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1108)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1109)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1110)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1111)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1112)
-    e.state_issue_score_json[id].fields.state_issue_score = -0.5;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-
-    // WI
-    var id = e.states_json.map(p=>p.pk).indexOf(230)
-    e.states_json[id].fields.electoral_votes = 10;
-    e.states_json[id].fields.popular_votes = 3298041;
-    // WY
-    var id = e.states_json.map(p=>p.pk).indexOf(231)
-    e.states_json[id].fields.electoral_votes = 3;
-    e.states_json[id].fields.popular_votes = 276765;
-        // Polarized
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1118)
-    e.state_issue_score_json[id].fields.state_issue_score = -1;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1118)
-    e.state_issue_score_json[id].fields.state_issue_score = -1;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1118)
-    e.state_issue_score_json[id].fields.state_issue_score = -1;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1118)
-    e.state_issue_score_json[id].fields.state_issue_score = -1;
-    e.state_issue_score_json[id].fields.weight = 2.5;
-    var id = e.state_issue_score_json.map(p=>p.pk).indexOf(1118)
-    e.state_issue_score_json[id].fields.state_issue_score = -1;
-    e.state_issue_score_json[id].fields.weight = 2.5;
+if((ans == 1400 || ans == 1401 || ans == 2641 || ans == 2648 || ans == 2645 || ans == 2653 || ans == 1464)) {
+    campaignTrail_temp.running_mate_image_url = 'https://itsastronomical.com/assets/1888/quay.png';
 }
 
-function finalReveal() {
-
-    modernizeStates();
-    reveal = 1;
-    document.getElementById("wittyquote").color = "red"
-    corrr=`\n<h2>BIDEN</h2><font id='wittyquote' size='4' color='#E6CA9B'><em>`+customquote+`</em></font>`
-    
-    var gameWindow = document.getElementById("game_window");
-    gameWindow.style.backgroundColor = "rgb(29, 88, 186)";
-
-    document.getElementById("header").src = "https://i.imgur.com/DSDwY03.png"
-    nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1D58BA"
-    nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#ffffff"
-    document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
-    $(".container")[0].style.backgroundColor = "#ffffff"
-    document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
-    
-    document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
-
-    var id = e.candidate_json.map(p=>p.pk).indexOf(116)
-    e.candidate_json[id].fields.first_name = "Donald"
-    e.candidate_json[id].fields.last_name = "Trump" 
-    e.candidate_json[id].fields.color_hex = "#ab3e37" 
-    
-    var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(118)
-    campaignTrail_temp.candidate_json[id].fields.color_hex = "#4265a1"
-
-    
-    var id = e.candidate_json.map(p=>p.pk).indexOf(119)
-    e.candidate_json[id].fields.first_name = "Robert F."
-    e.candidate_json[id].fields.last_name = "Kennedy Jr." 
-    e.candidate_json[id].fields.color_hex = "#e0a34c" 
-    
-    var id = e.candidate_json.map(p=>p.pk).indexOf(118)
-    e.candidate_json[id].fields.first_name = "Jill"
-    e.candidate_json[id].fields.last_name = "Stein" 
-    e.candidate_json[id].fields.color_hex = "#0d9e4c" 
-
-    campaignTrail_temp.election_json[0].fields.advisor_url = "https://i.imgur.com/HRao88e.png"
-
-    if(bidenReplaced == 1){
-        var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(117)
-        e.candidate_json[id].fields.first_name = "Kamala"
-        e.candidate_json[id].fields.last_name = "Harris" 
-        
-        campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/ZLmms8y.png';
-        campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/IhEpj2q.png';
-    }
-    else {
-        campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/SXLWUbU.png';
-        campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/NGWR7DG.png';
-    }
+if((ans == 1612 || ans == 1613 || ans == 1614)) {
+    campaignTrail_temp.candidate_image_url = 'https://itsastronomical.com/assets/1888/harrison.png';
+    campaignTrail_temp.running_mate_image_url = 'https://itsastronomical.com/assets/1888/harrisonhome.png';
 }
 
-let gameWindowNode = document.getElementById("game_window");
-let candidateWatcherConfig = { attributes: true, childList: true, subtree: true };
-let questionConfig = { attributes: true, childList: true, subtree: true };
-
-function updateQuestions(mutationList, observer) {
-    const answers = document.getElementsByClassName("game_answers");
-
-    for (let i = 0; i < answers.length; i++) {
-        const answer = answers[i];
-        if (answer.classList.contains("done")) {
-            continue;
-        }
-        answer.classList.add("done");
-
-        let answerObject = campaignTrail_temp.answers_json.filter((x) => x.pk == answer.value)[0];
-
-        if (answerObject.fields.condition != null) {
-            answer.disabled = !(eval(answerObject.fields.condition));
-        } 
-    }
+if((ans == 1523 || ans == 1524 || ans == 2660)) {
+    campaignTrail_temp.candidate_image_url = 'https://itsastronomical.com/assets/1888/michener.png';
+    campaignTrail_temp.running_mate_image_url = 'https://itsastronomical.com/assets/1888/quay.png';
 }
 
-const questionObserver = new MutationObserver(updateQuestions);
-questionObserver.observe(gameWindowNode, questionConfig);
+// Routes to end the game early before the convention
 
-const candidateObserver = new MutationObserver(onGameWindowChangeCandidates);
-candidateObserver.observe(gameWindowNode, candidateWatcherConfig);
-
-cyoAdventure = function(a) {
-    ans = campaignTrail_temp.player_answers[campaignTrail_temp.player_answers.length-1];
-    e.noCounter += 1
-
-    // Dementia Moments
-    if(ans == 3897){
-        dementiaMoments += 1;
-    }
-    if(ans == 3896){
-        dementiaMoments += 2;
-    }
-    if(ans == 3904){
-        dementiaMoments += 2;
-    }
-    if(ans == 3872){
-        dementiaMoments += 1;
-    }
-    if(ans == 3873){
-        dementiaMoments += 2;
-    }
-    if(ans == 1182){
-        dementiaMoments += 1;
-    }
-    if(ans == 1191){
-        dementiaMoments += 1;
-    }
-    if(ans == 1204){
-        dementiaMoments += 1;
-    }
-    if(ans == 1209){
-        dementiaMoments += 1;
-    }
-    if(ans == 1220){
-        dementiaMoments += 1;
-    }
-    if(ans == 1231){
-        dementiaMoments += 1;
-    }
-    if(ans == 1258){
-        dementiaMoments += 1;
-    }
-    // Rising Tensions
-    if(ans == 1164){
-        globalTension += 1;
-    }
-    if(ans == 1189){
-        globalTension += 1;
-    }
-    if(ans == 1225){
-        globalTension += 1;
-    }
-
-    // Answers
-    if(ans == 1317){ // Final Delusion
-        var id = e.candidate_json.map(p=>p.pk).indexOf(116)
-        e.candidate_json[id].fields.first_name = "George"
-        e.candidate_json[id].fields.last_name = "Bush" 
-        e.candidate_json[id].fields.color_hex = "#D45C66" 
-
-        var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(121)
-        campaignTrail_temp.candidate_json[id].fields.color_hex = "#9090C4"
-        vpTable["Joe Biden"] = "Pat Schroeder";
-    
-        var id = e.candidate_json.map(p=>p.pk).indexOf(118)
-        e.candidate_json[id].fields.first_name = "Jerry"
-        e.candidate_json[id].fields.last_name = "Brown" 
-        e.candidate_json[id].fields.color_hex = "#DB90B6" 
-        
-        var id = e.candidate_json.map(p=>p.pk).indexOf(119)
-        e.candidate_json[id].fields.first_name = "Lenora"
-        e.candidate_json[id].fields.last_name = "Fulani" 
-        e.candidate_json[id].fields.color_hex = "#BAE2BE" 
-
-        finalDelusion = 1;
-
-        document.getElementById("wittyquote").color = "red"
-        corrr='\n              <h2>JOE BIDEN</h2><font id="wittyquote" size="4" color="white"><em>PRESIDENT</em></font>\n            ';
-        
-        var gameWindow = document.getElementById("game_window");
-        gameWindow.style.backgroundColor = "rgb(0, 0, 136)";
-
-        document.getElementById("header").src = "https://i.imgur.com/W39Y0be.png"
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#000088";
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#000088";
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
-        $(".container")[0].style.backgroundColor = "#8E1818"
-        document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
-        
-        document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
-    }
-
-    // Question CYOA
-    
-    // Kamala DNC
-    if(dementiaMoments >= 4 && (e.noCounter == 4)){
-        bidenReplaced = 0;
-        campaignTrail_temp.questions_json[12] = tunnel(13695);   
-    }
-    // Kamala Candidate Campaigning
-    if(bidenReplaced == 0 && (e.noCounter == 4)){
-        campaignTrail_temp.questions_json[13] = tunnel(1305);   
-    }
-
-    if(e.noCounter == 13){ // enables state visits so you see the map
-        var id = e.election_json.map(p=>p.pk).indexOf(9)
-        e.election_json[id].fields.has_visits = 1;
-    }
-
-    // Reveal
-    if(e.noCounter == 15 && dementiaMoments >= 6 && bidenReplaced == 0){
-        finalDelusion = 1;
-        campaignTrail_temp.questions_json[15] = tunnel(1314);   
-        e.global_parameter_json[0].fields.question_count = 16;
-
-        campaignTrail_temp.candidate_image_url = 'https://i.imgur.com/SXLWUbU.png';
-        campaignTrail_temp.running_mate_image_url = 'https://i.imgur.com/NGWR7DG.png';
-
-        reveal = 1;
-        document.getElementById("wittyquote").color = "red"
-        corrr=`\n<h2>BIDEN</h2><font id='wittyquote' size='4' color='#E6CA9B'><em>`+customquote+`</em></font>`
-        
-        var gameWindow = document.getElementById("game_window");
-        gameWindow.style.backgroundColor = "rgb(29, 88, 186)";
-
-        document.getElementById("header").src = "https://i.imgur.com/DSDwY03.png"
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1D58BA"
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#ffffff"
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
-        $(".container")[0].style.backgroundColor = "#ffffff"
-        document.body.background = "https://htmlcolorcodes.com/assets/images/colors/black-color-solid-background-1920x1080.png"  
-        
-        document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#1D58BA!important;}</style>";
-
-        var id = e.candidate_json.map(p=>p.pk).indexOf(116)
-        e.candidate_json[id].fields.first_name = "Donald"
-        e.candidate_json[id].fields.last_name = "Trump" 
-        e.candidate_json[id].fields.color_hex = "#ab3e37" 
-        
-        var id = campaignTrail_temp.candidate_json.map(p=>p.pk).indexOf(118)
-        campaignTrail_temp.candidate_json[id].fields.color_hex = "#4265a1"
-
-        
-        var id = e.candidate_json.map(p=>p.pk).indexOf(118)
-        e.candidate_json[id].fields.first_name = "Robert F."
-        e.candidate_json[id].fields.last_name = "Kennedy Jr." 
-        e.candidate_json[id].fields.color_hex = "#e0a34c" 
-        
-        var id = e.candidate_json.map(p=>p.pk).indexOf(119)
-        e.candidate_json[id].fields.first_name = "Jill"
-        e.candidate_json[id].fields.last_name = "Stein" 
-        e.candidate_json[id].fields.color_hex = "#0d9e4c" 
-
-        campaignTrail_temp.election_json[0].fields.advisor_url = "https://i.imgur.com/HRao88e.png"
-    }
-    else if(e.noCounter == 15){
-        e.global_parameter_json[0].fields.question_count = 16;
-        finalReveal();
-    }
-
-    // Reveal
-    if(finalDelusion != 1){
-        if(bidenReplaced == 1 && (e.noCounter == 15)){                          // KAMALA PERSPECTIVE
-            campaignTrail_temp.questions_json[15] = tunnel(1278);   
-        }
-        else if(bidenReplaced == 0 && globalTension >= 3 && (e.noCounter == 15)){    // IRAN WAR
-            campaignTrail_temp.questions_json[15] = tunnel(1287);   
-        }
-        else if(bidenReplaced == 0 && globalTension < 3 && (e.noCounter == 15)){     // BIDEN REVEAL
-            campaignTrail_temp.questions_json[15] = tunnel(1260);   
-        }
-    }
-     if(ans == 13760){
-        campaignTrail_temp.questions_json[16] = tunnel(3907);
-        console.log ("Goldie")
-    }
-    if(ans == 1288 || ans == 1290){  
-        ctsAchievement("Back to the Stone Age");     
-
-        var features = "width=540,height=376,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no";
-        var popup = window.open("", "", features);
-        popup.document.write(`
-            <html>
-                <title>cmd</title>
-                <style>
-                    body {
-                        margin: 0;
-                        overflow: hidden;
-                        background-color: black;
-                    }
-                </style>
-                <body>
-                    <img src="https://i.imgur.com/14Yg0jP.gif" alt="gif">
-                </body>
-            </html>
-        `);
-        setTimeout(function(){
-            popup.close();
-        }, 2000);
-	    const topMenu = document.getElementById("header");
-        topMenu.remove();
-	    const gameContent = document.getElementById("game_window");
-        gameContent.remove();
-	    const credits = document.getElementById("site_credits");
-        credits.remove();
-        var elements_we = document.querySelectorAll(".menu_bar_login");
-        elements_we.forEach(function(element) {
-            element.classList.remove("menu_bar_login");
-        });
-        var elements_wet = document.querySelectorAll(".content_box");
-        elements_wet.forEach(function(element) {
-            element.classList.remove("content_box");
-        });
-        var elements_zero = document.querySelectorAll(".content_single");
-        elements_zero.forEach(function(element) {
-            element.classList.remove("content_single");
-        });
-        var elements_one = document.querySelectorAll(".footer");
-        elements_one.forEach(function(element) {
-            element.classList.remove("footer");
-        });
-        var elements_two = document.querySelectorAll(".container");
-        elements_two.forEach(function(element) {
-            element.classList.remove("container");
-        });
-    }
+// Q1, Gresham
+if((ans == 3896 || ans == 3904 || ans == 3873)) {
+    campaignTrail_temp.question_number = 24;
+    campaignTrail_temp.candidate_json[0]["fields"].first_name = "William F.";
+    campaignTrail_temp.candidate_json[0]["fields"].last_name = "Knowland";
+    campaignTrail_temp.candidate_json[0]["fields"].image_url = "https://itsastronomical.com/assets/1888/gresham.png";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_victory_message = "<h3>STEVENSON PULLS THE UPSET OF THE CENTURY, WINS ELECTION</h3><p>Adlai Stevenson II started the year of 1955 with a desire to rematch Eisenhower with the full power of his popular incumbency. While everyone could see another disaster looming for the “Egghead”, a series of unfortunate events has left the former governor with the keys to the White House. With the sudden death of Eisenhower, it was expected that he would face an even tougher challenge, as the nation mourned the popular War Hero and President. But an even more unexpected occurrence happened, as Former Governor of Minnesota Harold Stassen and Senator William Knowland formed an alliance to take down the incumbent president Richard Nixon, and lo and behold, against all odds the duo triumphed and unseated the president in time for the general election.</p><p>From the beginning, the William Knowland and Christian Herter ticket faced an open revolt of dissatisfied Nixon voters, who pledged to either vote Democrat or abstain from the election, protesting what they saw as a coup, but the final nail happened on the last days of the campaign, as a investigative reporter uncovered Knowland’s history of infidelity on the legislative halls. Watching the result unfold, Richard Nixon couldn’t help but smile. As Stevenson’s victory speech cracked through the speakers, the phone rang. It was Stassen. The second Nixon heard his distinctive Minnesota accent attempt to give a meek apology, the phone was turned off.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_loss_message = "<h3>Overruled</h3><p>In another fiercely-contested election, Grover Cleveland has come out just ahead to become the first two-term Democrat since Jackson. Gresham could match Cleveland’s probity, but his waffling on the tariff hampered his efforts to gather the Republicans behind him in this protection-centered fight.</p><p>You’re furious. Not only did the candidate choose the wrong candidate, they chose the wrong Hoosier, and you will be fighting an uphill battle with Gresham’s men for control of the Indiana Republican party for years to come. Perhaps in four years Harrison can try again, with you at his side, but you’ll need a lot of clever maneuvering to pull that off. Good luck, Mr. Michener.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].no_electoral_majority_message = "<h3>DEADLOCK</h3><p>Null</p><p>Null</p>";
+    campaignTrail_temp.multiple_endings=false
 }
 
-let vpName = "Kamala Harris";
-
-vpTable = {
-    "Joe Biden" : vpName,
-    "Donald Trump" : "J.D. Vance",
-    "Robert F. Kennedy Jr." : "Nicole Shanahan",
-    "Jill Stein" : "Mark Dunlea",
-    
-    "George Bush" : "I don't know",
-    "Jerry Brown" : "I don't know",
-    "Lenora Fulani" : "I don't know",
-
-	"Kamala Harris" : "Jared Polis",
+// Q2, Sherman 
+if((ans == 1357)) {
+    campaignTrail_temp.question_number = 24;
+    campaignTrail_temp.candidate_json[0]["fields"].first_name = "John";
+    campaignTrail_temp.candidate_json[0]["fields"].last_name = "Sherman";
+    campaignTrail_temp.candidate_json[0]["fields"].image_url = "https://itsastronomical.com/assets/1888/sherman.png";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_victory_message = "<h3>The Old Republican Prevails</h3><p>In a close contest, Senator John Sherman has defeated Cleveland and will become the twenty-third President of the United States. With neither candidate being much of a speaker, the election was a more staid affair, with the people trusting the steady hand of Sherman over Cleveland’s bold tariff plan. Sherman’s interest in financial matters may see some resolution to the currency question, and perhaps some action on the problem of the trusts.</p><p>You’re relieved, but a little disappointed. A Republican victor is always cause for celebration, but you remain convinced Harrison would have won as well. Sherman and Harrison share a respect for one another, and Harrison was one of the former’s finest surrogates on the trail; perhaps a cabinet post in the Sherman Administration lies in his future, and a job for you there as well. Good luck however things shake out, Mr. Michener.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_loss_message = "<h3>The Ohio Icicle Melts</h3><p>In another fiercely-contested election, Grover Cleveland has come out just ahead to become the first two-term Democrat since Jackson. It seems the distinguished senator’s financial know-how couldn’t overcome the President’s various advantages, despite his sluggishness.</p><p>You feel frustrated, knowing that there was a better candidate. The oratory of the ‘Ohio Icicle’ was never top-notch, and you can’t help but feel like a more ambitious effort and a standard-bearer better fitted to the moment could have wrenched the presidency from Cleveland. But what’s done is done. With some maneuvering and some luck, you might help Harrison stay on top of the Indiana Republicans; you have a lot of planning to do. Good luck, Mr. Michener.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].no_electoral_majority_message = "<h3>DEADLOCK</h3><p>Null</p><p>Null</p>";
+    campaignTrail_temp.multiple_endings=false 
 }
 
-vpTableHistorical = {
-    "Joe Biden" : "Kamala Harris",
-    "Donald Trump" : "J.D. Vance",
-    "Robert F. Kennedy Jr." : "Nicole Shanahan",
-    "Jill Stein" : "Mark Dunlea",
-}
-HistHexcolour=["#4265a1","#ab3e37","#e0a34c","#0d9e4c"];
-HistName=["Joe Biden","Donald Trump","Robert F. Kennedy Jr.","Jill Stein"];
-HistEV=[270,268,0,0];
-HistPV=["74,155,092","74,314,223","6,842,643","1,273,049"];
-HistPVP=["46.6%","46.7%","4.3%","0.8%"];
-
-function onGameWindowChangeCandidates() {
-    const resultsTableHolder = document.getElementById("overall_details_container");
-
-    if(!resultsTableHolder || resultsTableHolder.classList.contains("done")) {
-        return;
-    }
-
-    resultsTableHolder.classList.add("done");
-
-    const resultsTable = resultsTableHolder.childNodes[3].childNodes[3].children[0];
-    
-    for(let i = 0; i < resultsTable.children.length; i++) {
-        const row = resultsTable.children[i];
-        let name = row.firstChild.innerText;
-        row.insertCell(1);
-        if(name) {
-            name = name.replaceAll("-", "").trim();
-            console.log("name is:" + name)
-        }
-
-        if(i == 0) {
-            row.children[1].innerHTML = `<span style="font-weight:bold">Running Mate<span>`;
-        }
-        else {
-            row.children[1].innerHTML = vpTable[name];
-        }
-    }
-
-    
-    const resultsTableHistorical = resultsTableHolder.childNodes[5].childNodes[3].children[0];
-    
-    for(let i = 0; i < resultsTableHistorical.children.length; i++) {
-        const row = resultsTableHistorical.children[i];
-        let name = row.childNodes[1].innerText;
-        row.insertCell(1);
-        if(name) {
-            name = name.replaceAll("-", "").trim();
-        }
-
-        if(i == 0) {
-            row.children[1].innerHTML = `<span style="font-weight:bold">Running Mate<span>`;
-        }
-        else {
-            row.children[1].innerHTML = vpTableHistorical[name];
-        }
-    }
+// Q2, Blaine 
+if((ans == 1358)) {
+    campaignTrail_temp.question_number = 24;
+    campaignTrail_temp.candidate_json[0]["fields"].first_name = "James G.";
+    campaignTrail_temp.candidate_json[0]["fields"].last_name = "Blaine";
+    campaignTrail_temp.candidate_json[0]["fields"].image_url = "https://itsastronomical.com/assets/1888/blaine.png";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_victory_message = "<h3>The Marvelous Magnetic Man</h3><p>What a result; James Blaine, so long denied, has avenged his defeat and will become the twenty-third President of the United States. While some assumed his presidential ambitions would remain forever unfulfilled after ‘84, the true Blainiacs never lost faith, and Cleveland’s blunders allowed Blaine to remind America why Democratic presidents have become so scarce. Some question Blaine’s commitment to reform, but he insists that he’ll see the project through, and potentially explore deeper relationships with America’s neighbors.</p><p>You’re conflicted. A Republican victor is something to be proud of. But something doesn’t sit right with you. At the convention, Blaine’s men seemed to respect and fear Harrison the most, and they may be wary of further boosting Harrison’s career, or those of the men who supported him. Keep an eye out. Good luck in whatever you pursue next, Mr. Michener.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_loss_message = "<h3>The Doomed Knight</h3><p>In a fierce rematch, Grover Cleveland has once again prevailed over his rival Blaine to become the first two-term Democrat since Jackson. Blaine engaged the nation with his sweeping oratory, but reform-minded voters who had soured somewhat on Cleveland ended up delivering him another victory over the hated Blaine. The Plumed Knight’s double failure has damaged his standing in the party, and Republicans are desperately seeking a fresh new face.</p><p>You can’t help but feel like a more ambitious campaign effort and a standard-bearer better fitted to the moment could have wrenched the presidency from Cleveland. But what’s done is done. Now, with Blaine out of the picture, the 1892 nominee is an open question, and you happen to know of someone who might fit the bill. You have a lot of planning to do. Good luck, Mr. Michener.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].no_electoral_majority_message = "<h3>DEADLOCK</h3><p>Null</p><p>Null</p>";
+    campaignTrail_temp.multiple_endings=false 
 }
 
-construct = (a = 1) => {
-    e.page = e.page + a < e.pages.length ? e.page + a : 0
-    let html = e.header;
-    html += e.pages[e.page] + "<br>";
-    if (e.page > 0) {
-      html += `<button onclick='endingConstructor(a = -1)'>Back</button>`
-    }
-    if (e.page < e.pages.length - 1) {
-      html += `<button onclick='endingConstructor(a = 1)'>Next</button>`
-    }
+// Q3, Sherman 
+if((ans == 1399)) {
+    campaignTrail_temp.question_number = 24;
+    campaignTrail_temp.candidate_json[0]["fields"].first_name = "John";
+    campaignTrail_temp.candidate_json[0]["fields"].last_name = "Sherman";
+    campaignTrail_temp.candidate_json[0]["fields"].image_url = "https://itsastronomical.com/assets/1888/sherman.png";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_victory_message = "<h3>The Old Republican Prevails</h3><p>In a close contest, Senator John Sherman has defeated Cleveland and will become the twenty-third President of the United States. With neither candidate being much of a speaker, the election was a more staid affair, with the people trusting the steady hand of Sherman over Cleveland’s bold tariff plan. Sherman’s interest in financial matters may see some resolution to the currency question, and perhaps some action on the problem of the trusts.</p><p>You’re relieved, but a little disappointed. A Republican victor is always cause for celebration, but you remain convinced Harrison would have won as well. Sherman and Harrison share a respect for one another, and Harrison was one of the former’s finest surrogates on the trail; perhaps a cabinet post in the Sherman Administration lies in his future, and a job for you there as well. Good luck however things shake out, Mr. Michener.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].electoral_loss_message = "<h3>The Ohio Icicle Melts</h3><p>In another fiercely-contested election, Grover Cleveland has come out just ahead to become the first two-term Democrat since Jackson. It seems the distinguished senator’s financial know-how couldn’t overcome the President’s various advantages, despite his sluggishness.</p><p>You feel frustrated, knowing that there was a better candidate. The oratory of the ‘Ohio Icicle’ was never top-notch, and you can’t help but feel like a more ambitious effort and a standard-bearer better fitted to the moment could have wrenched the presidency from Cleveland. But what’s done is done. With some maneuvering and some luck, you might help Harrison stay on top of the Indiana Republicans; you have a lot of planning to do. Good luck, Mr. Michener.</p>";
+    campaignTrail_temp.candidate_json[0]["fields"].no_electoral_majority_message = "<h3>DEADLOCK</h3><p>Null</p><p>Null</p>";
+    campaignTrail_temp.multiple_endings=false 
+}
 
-    for (i in e.executable) {
-        if (e.executable[i][0] == e.page) {
-            e.executable[i][1]();
+if(ans == 1515) {
+    campaignTrail_temp.questions_json[21] = {
+        "model": "campaign_trail.question",
+        "pk": 2659,
+        "fields": {
+          "priority": 1,
+          "description": "You pace the floor, lips moving. The page of notes sits on your desk, and every hundred paces or so you check it again to make sure no clever allusion or anecdote is forgotten. Your hands move abruptly as you mutter; waving, pointing, locking together in a firm lattice. You shake your clenched fists every time you make a point the audience <i>must</i> remember. You can hear the delegation outside, mingling and murmuring in the hot summer sun, drinking lemonade, waiting for you to appear. A clock chimes. A deep breath. You walk out of the study, into the hall, and up to the front door. You exhale, then throw it open. Sound and sunlight engulf you.",
+          "likelihood": 1
         }
       }
-  
-    if (e.image == true)
-      setTimeout(()=>{
-        candImg = $(".person_image")[0]
-        if (candImg) {
-          candImg.remove()
-          $("#final_results_description")[0].style = `
-            text-align:center;
-            width: 62%;
-	        height:69%;
-            text-overflow: ellipsis;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: auto;
-          `
-          console.log("RESULTS UPDATED");
-        }
-      }, 10)
-      else if (e.image)
-      setTimeout(()=>{
-        candImg = $(".person_image")[0];
-        if (candImg) {
-          candImg.src = e.image;
-          console.log("TRYING");
-          $("#final_results_description")[0].style = `
-            text-align:center;
-            width: 77%;
-            height:72%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: auto;
-          `
-           console.log("RESULTS UPDATED");
-        }		
-      }, 10)
-    
-
-    return html;
-}
-  
-  endingConstructor = (a = 1) => {
-    $("#final_results_description")[0].innerHTML = construct(a);
   }
 
-e.multiple_endings = true;
-e.congEVs = false
+
+}
+
+var changeGameDisp = (hide) => {
+    disp = "";
+    if (hide) {
+      disp = "none";
+    }
+    Array.from(gameWindow.children).forEach(f=>{
+        if(!f.classList.contains("game_header") && (f.id != "main_content_area" || !$("#campaign_sign")[0])) 
+            f.style.display = disp
+    });
+};
+
+
+e.vpSwitcher = () => {
+    let potential_running_mate_pks = e.running_mate_json.filter(f=>f.fields.candidate == e.candidate_id).map(f=>f.fields.running_mate);
+    let pot_run_mat = potential_running_mate_pks.map(f=>e.candidate_json.find(_f=>_f.pk===f));
+    let running_mate_options = ``;
+    pot_run_mat.forEach(f=> {
+        running_mate_options += `<option value="${f.pk}">${f.fields.first_name} ${f.fields.last_name}</option>\n`
+    });
+  
+    let vp_html = `
+        <div id="running_mate_form">
+            <form name="running mate">
+                <p></p>
+                <h3>Please select your running mate:</h3> 
+                <select name="running_mate_id" id="running_mate_id">
+                    ${running_mate_options}
+                </select>
+                <p></p>
+            </form>
+        </div>
+        <div class="person_description_window" id="running_mate_description_window">
+            <div class="person_image" id="running_mate_image"> <img src="${pot_run_mat[0].fields.image_url}" width="210" height="250"> </div>
+            <div class="person_summary" id="running_mate_summary">
+                <ul>
+                    <li>Name: ${pot_run_mat[0].fields.first_name} ${pot_run_mat[0].fields.last_name}</li>
+                    <li>Party: ${pot_run_mat[0].fields.party}</li>
+                    <li>Home State: ${pot_run_mat[0].fields.state}</li>
+                </ul>
+                ${pot_run_mat[0].fields.description_as_running_mate}
+            </div>
+        </div>
+        <p> <button class="person_button" id="running_mate_id_button">Continue</button> </p>
+    `
+  
+    let vp_screen = document.createElement("div");
+    vp_screen.classList.add("inner_window_w_desc");
+    vp_screen.id = "inner_window_4";
+    vp_screen.innerHTML = vp_html;
+  
+    changeGameDisp(true);
+  
+    gameWindow.appendChild(vp_screen);
+  
+    // now we make the stuff do stuff!
+  
+    $("#running_mate_id").change((_e)=>{
+        _e.preventDefault()
+  
+        let value = Number($("#running_mate_id").val());
+        let i = potential_running_mate_pks.findIndex(f=>f === value);
+  
+        let screen_html = `
+            <div class="person_image" id="running_mate_image"> <img src="${pot_run_mat[i].fields.image_url}" width="210" height="250"> </div>
+            <div class="person_summary" id="running_mate_summary">
+                <ul>
+                    <li>Name: ${pot_run_mat[i].fields.first_name} ${pot_run_mat[i].fields.last_name}</li>
+                    <li>Party: ${pot_run_mat[i].fields.party}</li>
+                    <li>Home State: ${pot_run_mat[i].fields.state}</li>
+                </ul>
+                ${pot_run_mat[i].fields.description_as_running_mate}
+            </div>
+        `
+  
+        $("#running_mate_description_window").html(screen_html);
+  
+    });
+    // VP selected!
+  
+    $("#running_mate_id_button").click((_e)=>{
+        _e.preventDefault();
+  
+        let value = Number($("#running_mate_id").val());
+        let i = potential_running_mate_pks.findIndex(f=>f === value);
+  
+        e.running_mate_image_url = pot_run_mat[i].fields.image_url;
+        e.selected_running_mate = pot_run_mat[i];
+  
+        if ($("#campaign_sign")[0]) {
+            $("#running_mate_pic").attr("src", e.running_mate_image_url)
+        }
+
+        if(e.running_mate_image_url==="https://itsastronomical.com/assets/1888/waltphelps.png"){
+
+        console.log(campaignTrail_temp.questions_json[5])
+        campaignTrail_temp.questions_json[8] = {
+          "model": "campaign_trail.question",
+          "pk": 2640,
+          "fields": {
+              "priority": 0,
+              "description": "The Republicans’ running mate is just as eager to hit the trail as Harrison. Where will you send Phelps?",
+              "likelihood": 1
+            }
+          },
+          campaignTrail_temp.questions_json[17] = {
+            "model": "campaign_trail.question",
+            "pk": 2663,
+            "fields": {
+                "priority": 0,
+                "description": "A fine design; now you just need to pay for it. Such an effort will require funding on a scale heretofore alien to American politics. Who will you put in charge of this effort?",
+                "likelihood": 1
+              }
+          }
+        var button1 = document.getElementById('view_electoral_map');
+        button1.click();
+      
+      
+        setTimeout(function(){
+        var button2 = document.getElementById('resume_questions_button');	
+              button2.click();
+        }, 50);
+        console.log(campaignTrail_temp.questions_json[5])
+        }
+        
+        if(e.running_mate_image_url==="https://itsastronomical.com/assets/1888/bradley.png"){
+
+        console.log(campaignTrail_temp.questions_json[5])
+        campaignTrail_temp.questions_json[8] = {
+          "model": "campaign_trail.question",
+          "pk": 2644,
+          "fields": {
+              "priority": 0,
+              "description": "The Republicans’ running mate is just as eager to hit the trail as Harrison. Where will you send Bradley?",
+              "likelihood": 1
+            }
+          },
+          campaignTrail_temp.questions_json[10] = {
+            "model": "campaign_trail.question",
+            "pk": 2681,
+            "fields": {
+                "priority": 0,
+                "description": "A fine design; now you just need to pay for it. Such an effort will require funding on a scale heretofore alien to American politics. Who will you put in charge of this effort?",
+                "likelihood": 1
+              }
+          }
+        var button1 = document.getElementById('view_electoral_map');
+        button1.click();
+      
+      
+        setTimeout(function(){
+        var button2 = document.getElementById('resume_questions_button');	
+              button2.click();
+        }, 50);
+        console.log(campaignTrail_temp.questions_json[5])
+        }
+
+        $("#inner_window_4").remove();
+        changeGameDisp(false);
+    })
+}
+
+let observerRunning = false;
+let changeChartRunning = false;
+let mcaHeightRunning = false;
+let processedNodes = new Set();
+
+async function handleMutations(mutationsList, observer) {
+    if (observerRunning) return;
+    observerRunning = true;
+
+    // stop observing
+    observer.disconnect();
+
+    // addScrollbar
+    const overallResult = document.getElementById('overall_result');
+    if (overallResult && !processedNodes.has(overallResult)) {
+        overallResult.style.overflow = 'auto';
+        const buttons = document.querySelectorAll('#view_electoral_map, #answer_select_button, #ok_button, #final_election_map_button');
+        const handleClick = () => {
+            overallResult.style.overflow = 'auto';
+        };
+        buttons.forEach(button => button.addEventListener('click', handleClick));
+        processedNodes.add(overallResult);
+    }
+
+    // changechart
+    if (!changeChartRunning) {
+        changeChartRunning = true;
+        const elementIDs = ["overall_vote_statistics", "state_result_data_summary", "overall_details_container"];
+        for(let id of elementIDs) {
+            let element = document.getElementById(id);
+            if (element && !processedNodes.has(element)) {
+                let overallthing = element.innerHTML;
+                overallthing = overallthing.replace("Electoral Votes","Allocated Seats");
+                overallthing = overallthing.replace("Candidate","Party List");
+                element.innerHTML = overallthing;
+                processedNodes.add(element);
+            }
+        }
+        changeChartRunning = false;
+    }
+ // mcaHeight
+    if (!mcaHeightRunning) {
+        mcaHeightRunning = true;
+        let results_container = document.getElementById("results_container");
+        let chart = document.getElementById("myChart");
+        if (results_container && !processedNodes.has(results_container)) {
+            if (!chart){
+                results_container.style.height = "98%";
+                results_container.style.overflow = "scroll";
+            } else {
+                let mca = document.getElementById("main_content_area");
+                if (mca) {
+                    mca.style.height = "80%";
+                }
+            }
+            processedNodes.add(results_container);
+        }
+        mcaHeightRunning = false;
+    }
+
+    // Resume observing
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    observerRunning = false;
+}
+
+let singleObserver = new MutationObserver(handleMutations);
+singleObserver.observe(document.documentElement, { childList: true, subtree: true });
 
 endingPicker = (out, totv, aa, quickstats) => {
 
-    e.pages = []
-    e.header = "";
-    e.executable = []
+    // Checks for the Upper South
 
-    orderID = [aa[0].candidate, aa[1].candidate, aa[2].candidate, aa[3].candidate];
-    var playerEV = quickstats[0];
-    nct_stuff.themes[nct_stuff.selectedTheme].text_col = "black"
-    var gameWindow = document.getElementById("game_window");
-    gameWindow.style.backgroundColor = "rgb(255, 255, 255)";
-
-    if (!e.congEVs) {
-        e.congEVs = true;
-        changeState(207, 78, 1);
-        changeState(199, 77, 1);
+    let kentuckyResult = campaignTrail_temp.final_state_results.find((x) => x.state == 65);
+    if(kentuckyResult.result[0].candidate == 20) {
+    lilyWhite += 1;
     }
-
-    if (quickstats[0] >= 270 && finalDelusion == 0 && bidenReplaced == 0) { // That's a Biden Win!
-        e.pages.push(`<h3>Congratulations... you... you won... the 2024 presidential election.</h3>
-                  <p>You're still here. You're... holding on. The lights they're... so bright. You can't go out. The faces blur in front of you. You tell Kamala you can't go out... It's okay, Joe, she says. It's okay. Let me handle it. Let me handle it for you. You grip her hands tightly but she disentangles her grip from your's and then goes into the hallway. You hear her talking to Beau... No... It's not Beau... You have to remind yourself. It's... Yes. Jake. Kamala is telling Jake that Biden can't go on. He asks what does she mean and she says, Christ, Jake, fucking look at him. Look at what you've done. You better hope and pray no one finds out because they'll tear you to pieces. That shuts him up and...<br><br>Oh look, she's on television now... The crowds are... They... They're confused. She's thanking the crowd for their support for light over darkness, for hope over fear, for... She's talking about you. She's talking about how you two are going to fight hard to save America's families. There may be some changes in the coming days but she hopes... stay with us... we can begin to pass the torch to a new generation. You are speechless at that but before you know it Kamala is right back at your side. Come on, Joe, she whispers softly. You nod along and follow her out into the hallway and into your car and into the night.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/nbPaoDI.png'})])
-        ctsAchievement("The Great American Comeback");  
-    }
-    else if (quickstats[0] >= 270 && quickstats[0] < 349 && bidenReplaced == 1) { // That's a Harris Win!
-        e.pages.push(`<h3>Congratulations! You won the 2024 presidential election.</h3>
-                  <p>You breathe a sigh of relief a week after the election when the final votes are tallied. While everyone counted you out after the president's health crisis, you never doubted your hard work could make the difference. But now, can you bring the country together after a tumultuous few years? Will you be able to stop a vengeful Trump from trying re-enacting January 6th? Most importantly, how will you handle the legacy of your predecessor, a man who even now seems unaware that his time in power is coming to an end? Only time will tell, but hopefully the wounds will heal in time.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/0P4uBQu.png'})])
-        ctsAchievement("ijbol Veteran");  
-    }
-    else if (quickstats[0] >= 349 && bidenReplaced == 1) { // That's a Harris Landslide!
-        e.pages.push(`<h3>ijbol. You won the 2024 presidential election in a landslide!</h3>
-                  <p>With the crucial swing states counting their votes far faster than in 2020, the result was clear early on in the night: you won this election, and by a lot. You ran a masterful campaign, calling on just the right issues to re-assemble the anti-Trump majority after the president nearly shattered it. What comes next after these tumultuous few years? Will your fresh face be enough to finally bring the country together? Only time will tell, but one thing is for certain: those who counted you out will rue the day they chose not to support you.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/8y8dLs9.png'})])
-        ctsAchievement("ijbol Veteran");  
-        ctsAchievement("The New FDR");  
-    }
-    else if (quickstats[0] >= 270 && finalDelusion == 1 && bidenReplaced == 0) { // That's a Biden '92 Win!
-        e.pages.push(`<h3>Sorry! You have won the 1992 presidential election!</h3>
-                  <p>The Elites insisted that you didn't have it in you, that the crises of your term had left you washed up and hollowed out, but you proved the naysayers wrong as you did so many times before. They could not understand the power of your movement, your determination to succeed. As you stumble forward into the lights of the stage at your election party you hear gasps of sheer excitement, cries of awful joy. Your brilliant acceptance speech is broadcast around the world and America finally sees you for what you really are, transfixed by it. Even Beau, standing off stage, cannot contain himself. He holds his hand to his mouth to stop himself from screaming with delight.<br><br>Only one person seems to resist the spectacle of the night and that's Pat, who keeps trying to push you off stage. It's outrageous, you realize, her attempt to hog the limelight for herself, but you always thought she was a bit of a glory hound. You'll have to remember to keep her far away from you in your second term. You can't have anyone holding you back, after all. You and your A-Team are going to remake the world. You and Beau are going to go down in history. No one is ever going to forget what you accomplished here tonight.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/CsJujtl.png'})])
-        ctsAchievement("No Malarkey!");  
-    }
-    else if (quickstats[0] == 269 && finalDelusion == 0 && bidenReplaced == 0) { // That's a Biden Tie!
-        e.pages.push(`<h3>Oh... It's... It's a tie?</h3>
-                  <p>Your heart slinks... Sinks... It... Oh... It's a tie... the first in... what year is it? 2024. The first in 200 years. And the consequences... How many are there in the House? The Senate? You can't remember. All you know is you're supposed to go out there but the television is so loud and none of the faces of the newscasters make sense and you feel like you're drowning in the backroom so much so that you tell... Kamala. You tell Kamala that it's too much. You can't go on and she says okay, Joe. It'll be okay. I'll handle it. Don't worry. And she gives you a hesitant pat on the shoulder before escaping into the hallway where you hear her talking to Beau. No. No. Not Beau. It's... Jake... Sullivan, who is asking where the hell she's going and she's saying she's going to the stage and he asks her why she's trying to undermine the president and she tells him to shut the fuck up. Go in there and look at what you've done, Jake. I'm cleaning up the mess you made and if I see you here when I get back, I'm going to have the Secret Service throw your ass on the street. That shuts him up and..<br><br>Oh look, she's on television now. They... They're confused. She's thanking them for their support. She knows this result is... not what they expected, but she promises to work hard with the Congress to make sure the counting of votes and the contingent is peaceful... It won't be like... It's not going to... January 6th. Yes. She'll fight for our democracy, even when it's hard to love. Well, isn't that a nice sentiment, you mutter, and before you know it she's back and at your side. Okay, Joe, let's go, she says. You nod quietly and let her walk you to the hall and to your car and then your car disappears into the night.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/igohrbU.png'})])
-    }
-    else if (quickstats[0] == 269 && bidenReplaced == 1) { // That's a Harris Tie!
-        e.pages.push(`<h3>It's a tie!?</h3>
-                  <p>Despite the 269-269 split, the number of state delegations controlled by Republicans in the House of Representatives means that it's likely Donald J. Trump will be the next president. A lot of liberals are distraught and outraged that the election came down to such a technicality, but you comfort yourself with the hope that this narrow victory delegitimizes him. Hopefully your strong showing will motivate Democrats to support you again in 2028—if America's democracy survives that long.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/HKXOGN6.png'})])
-    }
-    else if (quickstats[0] == 269 && finalDelusion == 1 && bidenReplaced == 0) { // That's a Biden '92 Tie!
-        e.pages.push(`<h3>You Tie!?</h3>
-                  <p>It was inevitable that such an unprecedented term could have such an unprecedented end. For the first time since 1824, no candidate has gotten a majority of votes in the Electoral College, throwing the results to the Congress. Luckily, you've long built relationships with many of the members there—Barbara Jordan, Tom Foley, and Carl Roberts—who you will be able to call on to prevail in that most sacred contest. But for now, you address your supports and tell them that the fight is not yet over. The assembled believers are awed by your speech, rendered silent by your eloquence. They shake their heads in wonder and look at one another with fearful awe. Your muttering even stuns Beau who gasps and holds his hand over his mouth to stop himself from speaking.<br><br>Only one person seems to resist the spectacle of the night and that's Pat, who keeps trying to push you off stage. It's outrageous, you realize, her attempt to hog the limelight for herself, but you always thought she was a bit of a glory hound. You'll have to remember to keep her far away when you negotiate with the House for your place in the Oval Office. After all, the work is not done. You and your A-Team still need to remake the world. You and Beau need to go down in history. No one should forget what you accomplished here tonight.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/i9DwDO0.png'})])
-    }
-    else if (quickstats[0] < 269 && finalDelusion == 0 && bidenReplaced == 0) { // That's a Biden Loss!
-        e.pages.push(`<h3>Sorry... Oh... I'm so sorry... you lost... you lost... the 2024 presidential election.</h3>
-                  <p>You're still here and that makes the loss all the more brutal. The map... a sea of red. It sears your eyes. It breaks your heart. Your whole mission... Your whole drive... It was to prevent something like this from happening. It was to stop.... Trump. Donald Trump who has... Project 2024. A dark vision. You can't go on. You bury your head in your hands while Kamala pats your back. You tell her you can't go out. You can't go on. All the faces are blurring together. The names are broken. You can't remember... It's okay Joe, she says, it'll be okay. I'll handle it. Just stay here. Just hold on, and then she goes out into the hall and you can hear her talking to Beau, no... Not Beau. It's.. Jake. Jake Sullivan. She's telling Jake that you can't go on and he says what do you mean are you trying to pull a Palin and her voice goes low and she says look at him Jake look at what you've done. I'm cleaning up your shit and you better fucking hope I do a good job. That shuts him up and...<br><br>Oh look, she's on television now... The crowds are... They... They're confused. She's thanking them for their support. She knows this result is... disappointing but the two of you will never stop fighting... Never stop. It's one of the best speeches, you think, even though the words slide out like dead letters and her face is... Warped. Maybe there's a future for her in this new America... if America survies at all. All you know is that when she comes back, she helps you up and gives you a tight hug before helping you out into the hallway and into your car and into the night.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/ri0dQyi.png'})])
-    }
-    else if (quickstats[0] < 269 && bidenReplaced == 1) { // That's a Harris Loss!
-        e.pages.push(`<h3>Sorry! You lost the 2024 presidential election.</h3>
-                  <p>The result isn't unexpected after the president's health crisis but still the loss is painful. Come January, you will have to turn over the keys of government to Donald J. Trump, a man that you once described as the greatest threat to America's democracy. Will the country's institutions hold? Will Biden’s legacy and your work survive the assault that Trump plans to inflict? Only time will tell, but hopefully you'll be ready to make a difference come 2028.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/R78r23p.png'})])
-    }
-    else if (quickstats[0] < 269 && finalDelusion == 1 && bidenReplaced == 0) { // That's a Biden '92 Loss!
-        e.pages.push(`<h3>Congratulations! You have lost the 1992 presidential election!</h3>
-                  <p>It was a hard-fought battle against the Establishment. They stacked the deck and rigged the game the best they could. It was inevitable that you would fall, but worry not. The Elites have made you a martyr. By striking you down, they have only motivated your dogged supporters to try harder, to push further. Autocrat though he may be, Bush's victory will soon turn to ash in his mouth. At least, this is what you say in your brilliant concession speech before the silent crowd. They are moved to silence by your words, shocked by your vigor and inteligibleness. You spot people in the crowd so moved that they begin to cry. Even the news reporters broadcasting your remarks are speechless. Their ashen faces and striken expresions betray their guilt at their betrayal.<br><br>Only one person seems to resist the magnificence of your speech and that's Pat, who keeps trying to push you off stage. It's outrageous, you realize, her attempt to hog the limelight for herself, but you always thought she was a bit of a glory hound. You'll have to remember to keep her far away when you run for president in the next election. Hell, if Bush could do it, why can't you? You and your A-Team have done too much to fall into the dustbin of history. You and Beau are going to be remembered forever. No one is ever going to forget the speech you delivered here tonight.</p>`)
-        e.executable.push([0, (() => {e.image = e.image = 'https://i.imgur.com/oKQEDmM.png'})])
-    }
-
-    // Landslide!
-    if (quickstats[0] >= 319 && finalDelusion == 0 && bidenReplaced == 0) {
-        ctsAchievement("Diamond Joe");  
-    }
-    return construct(0);
-}
-
-changeState = (statePK, candidateId, amount = true) => {
-
-    // the rest shouldn't need to be changed (maybe)
-    const state = e.states_json[e.states_json.map(f=>f.pk).indexOf(statePK)];
-    const electoralVoteCount = state.fields.electoral_votes;
-    const sMI = e.final_state_results.map(f=>f.state).indexOf(statePK)
     
-    // find biden's results in AL
-    bidenAL = e.final_state_results[sMI].result[e.final_state_results[sMI].result.map(f=>f.candidate).indexOf(candidateId)]
+    let northcarolinaResult = campaignTrail_temp.final_state_results.find((x) => x.state == 80);
+    if(northcarolinaResult.result[0].candidate == 20) {
+    lilyWhite += 1;
+    }
 
-    let change;
-    
-    if (quickstats[1] > 0.03) {
-        winnerAL = e.final_state_results[sMI].result[0].candidate
-        if (amount === true) {
-            // clear existing EV allocations
-            e.final_state_results[sMI].result.forEach((a, i, arr) => {
-                arr[i].electoral_votes = 0
-            })
-        
-            // give biden EVs
-            bidenAL.electoral_votes = electoralVoteCount
+    let tennesseeResult = campaignTrail_temp.final_state_results.find((x) => x.state == 88);
+    if(tennesseeResult.result[0].candidate == 20) {
+    lilyWhite += 1;
+    }
 
-            change = electoralVoteCount;
-        } else {
-            // clear existing EV allocations
-            e.final_state_results[sMI].result.forEach((a, i, arr) => {
-                arr[i].electoral_votes = 0
-            })
-            e.final_state_results[sMI].result[0].electoral_votes = electoralVoteCount - amount
-        
-            // give biden EVs
-            bidenAL.electoral_votes = amount
+    let virginiaResult = campaignTrail_temp.final_state_results.find((x) => x.state == 92);
+    if(virginiaResult.result[0].candidate == 20) {
+    lilyWhite += 1;
+    }
+    
+    // Checks for victory in the northern swing states 
+    let ctResult = campaignTrail_temp.final_state_results.find((x) => x.state == 56);
+    if(ctResult.result[0].candidate == 20) {
+    north += 1;
+    }
 
-            change = amount;
-    
-        }
-    
-        bidenFinalOverall = e.final_overall_results[e.final_overall_results.map(f=>f.candidate).indexOf(candidateId)]
-        ALwinnerOverall = e.final_overall_results[e.final_overall_results.map(f=>f.candidate).indexOf(winnerAL)]
-        bidenFinalOverall.electoral_votes += change
-        ALwinnerOverall.electoral_votes -= change
-        
-    }   
-}
+    let inResult = campaignTrail_temp.final_state_results.find((x) => x.state == 62);
+    if(inResult.result[0].candidate == 20) {
+    north += 1;
+    }
+
+    let njResult = campaignTrail_temp.final_state_results.find((x) => x.state == 78);
+    if(njResult.result[0].candidate == 20) {
+    north += 1;
+    }
+
+    let nyResult = campaignTrail_temp.final_state_results.find((x) => x.state == 79);
+    if(nyResult.result[0].candidate == 20) {
+    north += 1;
+    }
+
+    // return "<h3>Down to the last ballot</h3><p></p><p></p><p></p>
+    //out = "win", "loss", or "tie" for your candidate
+  //totv = total votes in entire election
+  //aa = all final overall results data
+  //quickstats = relevant data on candidate performance (format: your candidate's electoral vote count, your candidate's popular vote share, your candidate's raw vote total)
+   if (quickstats[0] >= 201 && lilyWhite > 0) {
+    document.getElementById("header").src = "https://itsastronomical.com/assets/1888/1888banner.png";
+    return "<h3><q>“Shall the prejudices and paralysis of slavery continue to hang upon the skirts of progress?”</q></h3><p>Between the drizzling rain, the black sea of umbrellas, and the countless other figures packed onto the East Portico of the Capitol, it’s difficult to see much of the new President from your spot in the back of the crowd. But the people are quiet, and occasionally the familiar voice will cut sharply through the din. Somewhere in front of you, your friend, shielded from the rain by an umbrella held by the gracious runner-up himself, has just taken the oath of office. And you can’t help but feel a little pride in making it all happen.</p><p>A crack has appeared in the so-called ‘Solid South,’ with a Republican earning electoral votes from that section for the first time since Reconstruction. In promoting protection for young industries, Harrison centered economic issues over sectional ones. The abuses born of race hatred continue. But perhaps, with the Republican trifecta, this can be addressed, and perhaps this will be remembered as a new landmark in sectional reconciliation; when the South began to abandon its old feudalism, and pursue industry and progress alongside its Northern brethren.</p><p>And as for you, Louis Michener, you’ll continue to advise the new President on political matters. The papers breathlessly covered the Republican campaign, and your success has led many to predict a new era of campaigning; one of active candidates, modern technology, and pails and pails of money. One hundred years after Washington was first elected, the nation dreams bigger than ever. Here’s to a new American century!</p>"
+  } else if (quickstats[0] < 201 && lilyWhite > 0) {
+    return "<h3>A light in the darkness?</h3><p>You realize the result a bit before everyone else. In a fiercely-contested fight, Grover Cleveland has prevailed, becoming the first two-term Democrat since Jackson himself. Your great efforts have fallen just short.</p><p>It stings. Cleveland chose a battlefield on which the party felt we had the advantage, but the President triumphed nonetheless. But there is a light in the darkness. A crack, small as it may seem, has appeared in the Solid South. Harrison’s decision to elevate economic issues over sectional ones has earned the trust of a southern state for the Republicans for the first time since Reconstruction. An omen of future successes, of the industrious so-called ‘New South’? Or just a ripple? Only time will tell.</p><p>Benjamin has no hard feelings about your failure. Your friend will not get the power to make his visions into reality. Maybe you can try again in four years, but it probably won’t be the dark horse Harrison again. As for you, you'll return to Indiana and keep fighting for your party, come what may.</p>"
+  } else if (quickstats[0] >= 3 && quickstats[0]<180) {
+    return "<h3>Repudiated Republican</h3><p>With elections being so close, your heart sinks as the results become clear far earlier than you expected. In a fiercely-contested fight, Grover Cleveland has won a decisive majority, becoming the first two-term Democrat since Jackson himself. Your great efforts have amounted to little.</p><p>It stings. Cleveland chose a battlefield on which the party felt we had the advantage, but the President triumphed nonetheless. Maybe your campaign was too assertive. Maybe Cleveland’s operation was more sophisticated than you gave it credit for. Or maybe the protective system as it stands wasn’t as popular as you had believed. To spend so much money to so little purpose has damaged the party’s credibility with our backers, and all but guaranteed that such ambitious campaigns will be ruled out in future contests.</p><p>Benjamin has no hard feelings about your failure. Your friend will not get the power to make his visions into reality. Maybe you can try again in four years, but it probably won’t be the dark horse Harrison again. As for you, you'll return to Indiana, likely disappearing once more into the party machinery, doing what you can, where you can, for your beliefs.</p>"
+  } else if (quickstats[0] >= 180 && quickstats[0]<201) {
+    return "<h3>Down to the last ballot</h3><p>You realize the result a bit before everyone else. In a fiercely-contested fight, Grover Cleveland has won narrowly, becoming the first two-term Democrat since Jackson himself. Your great efforts have fallen just short.</p><p>It stings. Cleveland chose a battlefield on which the party felt we had the advantage, but the President triumphed nonetheless. Maybe your campaign was too assertive. Maybe Cleveland’s operation was more sophisticated than you gave it credit for. Or maybe the protective system as it stands wasn’t as popular as you had believed. The campaign’s financial backers aren’t pleased that your expensive effort lost to a man who barely campaigned at all, and it’s hard to imagine an ambitious campaign strategy being attempted for a while.</p><p>Benjamin has no hard feelings about your failure. Your friend will not get the power to make his visions into reality. Maybe you can try again in four years, but it probably won’t be the dark horse Harrison again. As for you, you'll return to Indiana and keep fighting for your party, come what may.</p>"
+  } else if (quickstats[0] >= 201 && quickstats[0]<248) {
+    document.getElementById("header").src = "https://itsastronomical.com/assets/1888/1888banner.png";
+    return "<h3><q>“God has placed upon our head a diadem...”</q></h3><p>Between the drizzling rain, the black sea of umbrellas, and the countless other significant figures packed onto the East Portico of the Capitol, it’s difficult to see much of the new President from your spot in the back of the crowd. But the people are quiet, and occasionally a familiar voice will cut sharply through the din. Somewhere in front of you, your friend, shielded from the rain by an umbrella held by the gracious runner-up himself, has just taken the oath of office. And you can’t help but feel a little pride in making it all happen.</p><p>No one expected it to be anything but close. In one of the highest-turnout elections yet, the Republican party avenged Blaine and swung enough doubtful states back to secure the Executive Mansion once more. And with majorities in both the Senate and the House, Harrison can dream of helming a more active federal government than ever before; protecting American industry, protecting the gains of the reformists, and protecting voting rights in the South.</p><p>And as for you, Louis Michener, you’ll continue to advise the new President on political matters. The papers breathlessly covered the Republican campaign, and your success has led many to predict a new era of campaigning; one of active candidates, modern technology, and pails and pails of money. One hundred years after Washington was first elected, the nation dreams bigger than ever. Here’s to a new American century!</p>"
+  } else if (quickstats[0] >= 248) {
+    document.getElementById("header").src = "https://itsastronomical.com/assets/1888/1888banner.png";
+    return "<h3><q>“God has placed upon our head a diadem...”</q></h3><p>Between the drizzling rain, the black sea of umbrellas, and the countless other significant figures packed onto the East Portico of the Capitol, it’s difficult to see much of the new President from your spot in the back of the crowd. But the people are quiet, and occasionally a familiar voice will cut sharply through the din. Somewhere in front of you, your friend, shielded from the rain by an umbrella held by the gracious runner-up himself, has just taken the oath of office. And you can’t help but feel a little pride in making it all happen.</p><p>It was about as strong a mandate you could have hoped for. A solid victory, with the lion’s share of the doubtful states landing in Harrison’s column after a hard-fought battle. The Republican forces out-educated and out-organized the Democrats, rallying to support the American system of protection from experiments. And with majorities in both the Senate and the House, Harrison can dream of helming a more active federal government than ever before; protecting American industry, protecting the gains of the reformists, and protecting voting rights in the South.</p><p>And as for you, Louis Michener, you’ll continue to advise the new President on political matters. The papers breathlessly covered the Republican campaign, and your success has led many to predict a new era of campaigning; one of active candidates, modern technology, and pails and pails of money. One hundred years after Washington was first elected, the nation dreams bigger than ever. Here’s to a new American century!</p>"
+  }
+  
+  if (north >= 4 && quickstats[0] >= 201) { 
+    ctsAchievement("Rejuvenated Republican");  
+  }
+
+  if (lilyWhite >= 1 && e.running_mate_last_name == "Bradley" && quickstats[0] >= 201) { 
+    ctsAchievement("A New South?");  
+  }
+
+  if (equal >= 1 && quickstats[0] >= 201) { 
+    ctsAchievement("Tongue of Fire");  
+  }
+  
+  if (dummy >= 2 && quickstats[0] >= 201) { 
+    ctsAchievement("Providence");  
+  }
+
+  }
+campaignTrail_temp.multiple_endings=true
